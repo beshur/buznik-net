@@ -5,7 +5,7 @@ module.exports = function(grunt) {
             //Run The Uglify Task For Javascript_Files
             uglify_js_files: {
                 files: {
-                    "js/dist/script.js":"js/build/*.js",
+                    "dist/js/script.js":"js/build/*.js",
                 }
             },
             // The Global Options
@@ -34,13 +34,70 @@ module.exports = function(grunt) {
 
                 files : {
                     //"the Destination " : " the source files"
-                    "css/main.css" : "scss/main.scss",
+                    "dist/css/main.css" : "scss/main.scss",
                 },
                 options : {
                     "style":"compressed",
                     "precision":"7"
                 },
             },
+        },
+
+        postcss: {
+            options: {
+                map: true, // inline sourcemaps
+                processors: [
+                    require('pixrem')(), // add fallbacks for rem units
+                    require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
+                    require('cssnano')() // minify the result
+                ]
+            },
+            dist: {
+                src: 'css/*.css'
+            }
+        },
+
+        svgmin: {
+            options: {
+                plugins: [
+                    {
+                        removeViewBox: false
+                    }, {
+                        removeUselessStrokeAndFill: false
+                    }
+                ]
+            },
+            dist: {
+                files: {
+                    'img/shu.svg': 'svg/shu.svg'
+                }
+            }
+        },
+
+        imagemin: {
+            dynamic: {                         // Another target
+                files: [{
+                    expand: true,                  // Enable dynamic expansion
+                    cwd: 'img/',                   // Src matches are relative to this path
+                    src: ['**/*.{png,jpg,gif,svg}'],   // Actual patterns to match
+                    dest: 'dist/img'                  // Destination path prefix
+                }]
+            }
+        },
+
+
+        grunticon: {
+            myIcons: {
+                    files: [{
+                        expand: true,
+                        cwd: 'img/',
+                        src: ['*.svg', '*.png'],
+                        dest: "dist/img64"
+                    }],
+                options: {
+                    loadersnippet: "grunticon.loader.js",
+                }
+            }
         },
 
         //The Watch Task
@@ -57,7 +114,7 @@ module.exports = function(grunt) {
             // Watching For Sass Changes
             watch_sass_files: {
                 files : ['scss/**/*.scss'],
-                tasks : ['sass']
+                tasks : ['sass', 'postcss']
             },
             options: {
                 'spawn': true,
@@ -79,7 +136,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-postcss');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-grunticon');
 
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['imagemin', 'watch']);
 
 };

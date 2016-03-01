@@ -3,10 +3,18 @@
 html, body {
 	padding: 0;
 	margin: 0;
+	width: 100%;
+	min-height: 100%;
+}
+body {
+	background: $brand-color;
 }
 img {
 	display: inline-block;
 	max-width: 100%;
+}
+* {
+	box-sizing: content-box;
 }
 
 .fl {
@@ -20,7 +28,8 @@ img {
 }
 
 ul.list {
-	margin-left: 0;
+	margin: 0;
+	padding-left: 0;
 	li {
 		display: inline;
 		padding-left: 15px;
@@ -31,10 +40,144 @@ ul.list {
 	}
 }
 
+a {
+	&, &:active, &:visited {
+		color: inherit;
+	}
+	text-decoration: none;
+	border-bottom: 1px solid #fff;
+
+	&:hover {
+		border-bottom-color: transparent;
+	}
+}
 
 
+/* */
+#container {
+	margin: 0 auto;
+	max-width: 1280px;
+	padding-left: 200px;
+	padding-right: 200px;
+
+	color: #FFF;
+	@include fontAcc();
+
+	@media screen and (max-width: 768px) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+}
+
+section {
+	width: 60%;
+	margin: 90px auto;
+
+	font-size: 14px;
+	line-height: 1.5;
+
+	@media screen and (max-width: 768px) {
+		width: 80%;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		font-size: 12px;
+	}
+
+
+	&.resume {
+		header {
+			margin-bottom: 20px;
+
+			h1 {
+				position: relative;
+				margin-top: 20px;
+				margin-bottom: 20px;
+				font-size: 24px;
+				font-weight: normal;
+
+				.shu {
+					content: "";
+					position: absolute;
+					top: 0px;
+					left: -60px;
+
+					width: 38px;
+					height: 33px;
+					
+					background: url(dist/img/shu.png) 0 0 no-repeat;
+					background-image: url(dist/img/shu.svg);
+			        background-size: 100%;
+				}
+				@media screen and (max-width: 768px) {
+					& {
+						margin-top: 10px;
+						margin-bottom: 10px;
+						font-size: 18px;
+						
+
+						.shu {
+							width: 22px;
+							height: 19px;
+							top: 2px;
+							left: -32px;
+						}
+					}
+				}
+			}
+		}
+
+		.links {
+			padding-top: 25px;
+			@include fontReg();
+			ul {
+				font-size: 0;
+				li {
+					display: block;
+					width: 50%;
+					padding-left: 0px;
+
+					font-size: 12px;
+					line-height: 2;
+	
+					&.r {
+						margin-left: 50%;
+					}
+					&.fl {
+						clear: left;
+					}
+
+					@media screen and (max-width: 768px) {
+						width: 100%;
+						line-height: 3;
+						
+						&.r {
+							margin-left: 0;
+						}
+						&.fl {
+							clear: none;
+						}
+					}
+
+				}
+			}
+		}
+	}
+}
 
 /* */
 .topbar {
 	display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+	font-size: 12px;
+	@include fontReg();
+	
+	&-lang {
+		display: block;
+	}
 }

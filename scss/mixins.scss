@@ -1,1 +1,9 @@
 $brand-color: #3e72aa;
+
+
+@mixin fontReg() {
+	font-family: Arial, Arial, Helvetica, sans-serif;
+}
+@mixin fontAcc() {
+	font-family: Tahoma, Geneva, sans-serif;
+}
