@@ -9,7 +9,7 @@ html, body {
 body {
 	color: $main-color;
 	background: $bg-color;
-	background: linear-gradient(to bottom, $bg-color 0%, darken($bg-color, 5%) 75%);
+	background: linear-gradient(to bottom, #fff 15%, #F4ECDC 100%);
 }
 img {
 	display: inline-block;
@@ -184,8 +184,15 @@ section {
 
 	font-size: 12px;
 	@include fontReg();
+	color: lighten($main-color, 20%);
 	
 	&-lang {
 		display: block;
+		text-transform: lowercase;
+	}
+
+	.location-icon {
+		position: absolute;
+		margin-left: -1em;
 	}
 }
