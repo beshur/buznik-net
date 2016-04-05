@@ -22,12 +22,13 @@ function render_menu($config) {
 	$langs = $config->languages;
 	$ret = '';
 	global $lang;
-	foreach ($langs as $value) {
+	foreach ($langs as $key) {
 		$ret .= '<li';
-		if ($value == $lang) {
-			$ret .= sprintf(' class="active">%s', $value);
+		$langValue = get_string($key, $lang);
+		if ($key == $lang) {
+			$ret .= sprintf(' class="active">%s', $langValue);
 		} else {
-			$ret .= sprintf('><a href="/'.$value.'">%s</a>', $value);
+			$ret .= sprintf('><a href="/'.$key.'">%s</a>', $langValue);
 		}
 		$ret .= '</li>';
 	}
@@ -53,7 +54,9 @@ function render_text($lang) {
 <body>
 	<div id="container">
 		<div class="topbar">
-			<div class="topbar-location">&#x2302; Одесса</div>
+			<div class="topbar-location" title="<?php render_string('location'); ?>">
+				<span class="location-icon">&#x2302;</span>
+				<?php render_string('currentLocation'); ?></div>
 			<div class="topbar-lang">
 				<ul class="list"><?php render_menu($config); ?></ul>
 			</div>

@@ -29,6 +29,16 @@ $lang_strings = array(
 		'Резюме у .PDF',
 		'CV in .PDF'
 	),
+	'location' => array(
+		'Нахожусь',
+		'Знаходжусь',
+		'Location'
+	),
+	'currentLocation' => array(
+		'Одесса',
+		'Одеса',
+		'Odesa, Ukraine'
+	),
 );
 
 function get_string($key, $lang) {
