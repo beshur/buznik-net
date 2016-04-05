@@ -60,7 +60,7 @@ function render_text($lang) {
 		</div>
 		<section class="resume">
 			<header><h1>
-				<span class="shu icon-shu"></span>
+				<span class="shu icon-shu"><?php include('dist/img/shu.svg');?></span>
 				<?php render_string('name'); ?>
 			</h2></header>
 		
@@ -71,14 +71,14 @@ function render_text($lang) {
 		 --><div class="links">
 				<div><?php render_string('can'); ?>:</div>
 				<ul class="list">
-					<li><a href="https://github.com/beshur">github.com/beshur</a></li>
-					<li><a href="http://shu.bz/212f"><?php render_string('cv'); ?></a></li>
+					<li><a href="https://github.com/beshur" target="_blank">github.com/beshur</a></li>
+					<li><a href="http://shu.bz/212f" target="_blank"><?php render_string('cv'); ?></a></li>
 				</ul>
 				<div><?php render_string('connect'); ?>:</div>
 				<ul class="list">
 					<li>Skype: <a href="skype:alexbuznik">alexbuznik</a></li>
 					<li>E-mail: <a href="mailto:shu@buznik.net">shu@buznik.net</a></li>
-					<li><a href="https://twitter.com/beshur">twitter.com/beshur</a></li>
+					<li><a href="https://twitter.com/beshur" target="_blank">twitter.com/beshur</a></li>
 				</ul>
 			</div>
 		</section>
