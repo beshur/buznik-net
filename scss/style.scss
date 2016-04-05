@@ -7,7 +7,8 @@ html, body {
 	min-height: 100%;
 }
 body {
-	background: $brand-color;
+	background: $bg-color;
+	background: linear-gradient(to bottom, $bg-color 0%, darken($bg-color, 5%) 75%);
 }
 img {
 	display: inline-block;
@@ -71,14 +72,12 @@ a {
 }
 
 section {
-	width: 60%;
 	margin: 90px auto;
 
 	font-size: 14px;
 	line-height: 1.5;
 
 	@media screen and (max-width: 768px) {
-		width: 80%;
 		margin-top: 20px;
 		margin-bottom: 20px;
 		font-size: 12px;
@@ -114,23 +113,30 @@ section {
 						margin-top: 10px;
 						margin-bottom: 10px;
 						font-size: 18px;
+						padding-top: 25px;
 						
 
 						.shu {
 							width: 22px;
 							height: 19px;
-							top: 2px;
-							left: -32px;
+							top: 0px;
+							left: 0;
 						}
 					}
 				}
 			}
 		}
 
+		.resume-main {
+
+		}
+
 		.links {
 			padding-top: 25px;
 			@include fontReg();
+
 			ul {
+				margin-bottom: 20px;
 				font-size: 0;
 				li {
 					display: block;
