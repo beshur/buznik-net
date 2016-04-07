@@ -33,32 +33,23 @@ $lang_strings = array(
 		'Нахожусь',
 		'Знаходжусь',
 		'Location'
-	),
-	'currentLocation' => array(
-		'Одесса',
-		'Одеса',
-		'Odesa, Ukraine'
-	),
+	)
 );
 
 function get_string($key, $lang) {
 	global $lang_strings;
 	$pos = 0;
-	if (isset($pos)) {
-		switch ($lang) {
-			case 'ukr':
-				$pos = 1;
-				break;
-			case 'eng':
-				$pos = 2;
-				break;
-			default:
-				break;
-		}
-		return $lang_strings[$key][$pos];
-	} else {
-		return false;
+	switch ($lang) {
+		case 'ukr':
+			$pos = 1;
+			break;
+		case 'eng':
+			$pos = 2;
+			break;
+		default:
+			break;
 	}
+	return $lang_strings[$key][$pos];
 };
 
 function echo_string($key, $lang) {

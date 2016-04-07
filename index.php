@@ -13,6 +13,22 @@ $lang = 'rus';
 if (isset($_GET['lang'])) {
 	$lang = $_GET['lang'];
 }
+function get_string_from_obj($obj) {
+	global $lang;
+	$pos = 0;
+	switch ($lang) {
+		case 'ukr':
+			$pos = 1;
+			break;
+		case 'eng':
+			$pos = 2;
+			break;
+		default:
+			break;
+	}
+	return $obj[$pos];
+};
+
 function render_string($key) {
 	global $lang;
 	echo_string($key, $lang);
@@ -56,7 +72,7 @@ function render_text($lang) {
 		<div class="topbar">
 			<div class="topbar-location" title="<?php render_string('location'); ?>">
 				<span class="location-icon">&#x2302;</span>
-				<?php render_string('currentLocation'); ?></div>
+				<?php echo get_string_from_obj($config->currentLocation); ?></div>
 			<div class="topbar-lang">
 				<ul class="list"><?php render_menu($config); ?></ul>
 			</div>
