@@ -3,7 +3,9 @@
  * Language strings
  * Key => array(Russian version, Ukrainian version, English version)
  */
-defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+if (php_sapi_name() !== "cli" && !defined('ABSPATH')) {
+	die('1337!');
+}
 
 $lang_strings = array(
 	'rus' => array('Рус', 'Рус', 'Рус'),

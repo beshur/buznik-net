@@ -3,7 +3,9 @@
  * Get and cache resume texts from a remote server
  * using cron tab.
  */
-defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+if (php_sapi_name() !== "cli" && !defined('ABSPATH')) {
+	die('1337!');
+}
 
 include('config.php');
 if ($config->auto_update == false) {
@@ -33,10 +35,10 @@ foreach ($texts as $key) {
 	$fileUrl = $config->text_location.$filename;
 	$try_file = file_get_contents($fileUrl);
 	$headers = parseHeaders($http_response_header);
-	echo 'file: '.$filename;
-	echo ' ('.$headers['response_code'].')';
-	echo ':<br>';
-	echo $try_file;
+	// echo 'file: '.$filename;
+	// echo ' ('.$headers['response_code'].')';
+	// echo ':<br>';
+	// echo $try_file;
 	if ($headers['response_code'] == 200) {
 		$texts[$key] = $try_file;
 		$file = fopen(getcwd().'/'.$filename, 'w');

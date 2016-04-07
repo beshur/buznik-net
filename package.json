@@ -13,6 +13,10 @@
     "cv"
   ],
   "author": "Alex Buznik <shu@buznik.net>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/beshur/buznik-net.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^6.3.3",
@@ -26,6 +30,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-grunticon": "^2.2.2",
     "grunt-postcss": "^0.7.2",
+    "grunt-ssh": "^0.12.9",
     "grunt-svgmin": "^3.1.2",
     "imagemin-mozjpeg": "^5.1.0",
     "pixrem": "^3.0.0"

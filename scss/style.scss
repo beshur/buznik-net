@@ -62,7 +62,7 @@ a {
 	padding-left: 200px;
 	padding-right: 200px;
 
-	@include fontAcc();
+	@include fontReg();
 
 	@media screen and (max-width: 768px) {
 		padding-left: 20px;
@@ -99,7 +99,7 @@ section {
 					content: "";
 					position: absolute;
 					top: 0px;
-					left: -60px;
+					left: -52px;
 					svg {
 						width: 38px;
 						height: 33px;
@@ -130,14 +130,15 @@ section {
 		}
 
 		.resume-main {
-
+			@include fontAcc();
 		}
 
 		.links {
 			padding-top: 25px;
-			@include fontReg();
+			@include fontAcc();
 
 			ul {
+				@include fontReg();
 				margin-bottom: 20px;
 				font-size: 0;
 				li {

@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        config: grunt.file.readJSON('config.json'),
+
         uglify: {
             //Run The Uglify Task For Javascript_Files
             uglify_js_files: {
@@ -33,7 +35,6 @@ module.exports = function(grunt) {
             sass_my_files : {
 
                 files : {
-                    //"the Destination " : " the source files"
                     "dist/css/main.css" : "scss/main.scss",
                 },
                 options : {
@@ -45,7 +46,6 @@ module.exports = function(grunt) {
 
         postcss: {
             options: {
-                map: true, // inline sourcemaps
                 processors: [
                     require('pixrem')(), // add fallbacks for rem units
                     require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
@@ -126,6 +126,23 @@ module.exports = function(grunt) {
                 'livereloadOnError': true
             }
         },
+
+        sftp: {
+            deploy: {
+                files: {
+                    "./": ["dist/img/*", "dist/css/*.css", "*.php", "*.ico"]
+                },
+                options: {
+                    path: '<%= config.path %>',
+                    host: '<%= config.host %>',
+                    username: '<%= config.username %>',
+                    privateKey: grunt.file.read(process.env.HOME + "/.ssh/id_rsa"),
+                    createDirectories: true,
+                    showProgress: true
+                }
+            }
+        },
+
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -133,6 +150,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-grunticon');
+    grunt.loadNpmTasks('grunt-ssh');
 
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('build', ['imagemin']);
