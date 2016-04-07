@@ -47,7 +47,7 @@ a {
 		color: inherit;
 	}
 	text-decoration: none;
-	border-bottom: 1px solid lighten($main-color, 30%);
+	border-bottom: 1px solid lighten($main-color, 50%);
 
 	&:hover {
 		border-bottom-color: transparent;
@@ -147,26 +147,6 @@ section {
 
 					font-size: 12px;
 					line-height: 2;
-	
-					&.r {
-						margin-left: 50%;
-					}
-					&.fl {
-						clear: left;
-					}
-
-					@media screen and (max-width: 768px) {
-						width: 100%;
-						line-height: 3;
-						
-						&.r {
-							margin-left: 0;
-						}
-						&.fl {
-							clear: none;
-						}
-					}
-
 				}
 			}
 		}
