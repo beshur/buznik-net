@@ -102,11 +102,6 @@ module.exports = function(grunt) {
 
         //The Watch Task
         watch: {
-            //watching The Javascript files for changes and run the uglify function on theme
-            watch_js_files: {
-                files : ['js/build/*.js'],
-                tasks : ['uglify']
-            },
             // Watching For html Changes
             watch_html_files: {
                 files : ['*.html']
@@ -134,12 +129,12 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-grunticon');
 
-    grunt.registerTask('default', ['imagemin', 'watch']);
+    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('build', ['imagemin']);
 
 };
