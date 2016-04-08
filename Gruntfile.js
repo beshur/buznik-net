@@ -130,7 +130,7 @@ module.exports = function(grunt) {
         sftp: {
             deploy: {
                 files: {
-                    "./": ["dist/img/*", "dist/css/*.css", "*.php", "*.ico"]
+                    "./": ["dist/img/*", "dist/css/*.css", "*.php", "cron.sh", "*.ico"]
                 },
                 options: {
                     path: '<%= config.path %>',
@@ -139,6 +139,17 @@ module.exports = function(grunt) {
                     privateKey: grunt.file.read(process.env.HOME + "/.ssh/id_rsa"),
                     createDirectories: true,
                     showProgress: true
+                }
+            }
+        },
+
+        sshexec: {
+            cache: {
+                command: 'cd <%=config.path%> && sh cron.sh',
+                options: {
+                    host: '<%= config.host %>',
+                    username: '<%= config.username %>',
+                    privateKey: grunt.file.read(process.env.HOME + "/.ssh/id_rsa"),
                 }
             }
         },
@@ -154,5 +165,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('build', ['imagemin']);
+    grunt.registerTask('deploy', ['build', 'sftp:deploy', 'sshexec:cache']);
 
 };

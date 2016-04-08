@@ -6,4 +6,5 @@
 /dist
 config.json
 text_*.html
+index_*.html
 *.log
