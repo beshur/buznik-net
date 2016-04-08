@@ -41,7 +41,7 @@ foreach ($texts as $key) {
 	// echo $try_file;
 	if ($headers['response_code'] == 200) {
 		$texts[$key] = $try_file;
-		$file = fopen(getcwd().'/'.$filename, 'w');
+		$file = fopen(__DIR__.'/'.$filename, 'w');
 		fwrite($file, $try_file);
 		fclose($file);
 	} else {
