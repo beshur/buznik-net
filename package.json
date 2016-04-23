@@ -2,6 +2,10 @@
   "name": "buznik-net",
   "version": "1.0.0",
   "description": "Buznik.net redesign (2016). Minimal for the client.",
+  "scripts": {
+    "build": "grunt build",
+    "deploy": "grunt deploy"
+  },
   "keywords": [
     "buznik.net",
     "redesign",
