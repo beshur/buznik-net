@@ -27,9 +27,9 @@ $lang_strings = array(
 		'Contact'
 	),
 	'cv' => array(
-		'Резюме в .PDF',
-		'Резюме у .PDF',
-		'CV in .PDF'
+		'Резюме',
+		'Резюме',
+		'CV'
 	),
 	'location' => array(
 		'Нахожусь',

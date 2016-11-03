@@ -94,7 +94,7 @@ function render_text($lang) {
 				<div><?php render_string('can'); ?>:</div>
 				<ul class="list">
 					<li><a href="https://github.com/beshur" target="_blank">github.com/beshur</a></li>
-					<li><a href="http://shu.bz/212f" target="_blank"><?php render_string('cv'); ?></a></li>
+					<li><a href="https://beshur.github.io/cv/" target="_blank"><?php render_string('cv'); ?></a></li>
 				</ul>
 				<div><?php render_string('connect'); ?>:</div>
 				<ul class="list">
