@@ -74,8 +74,8 @@ function render_text($lang) {
 	<div id="container">
 		<div class="topbar">
 			<div class="topbar-location" title="<?php render_string('location'); ?>">
-				<span class="location-icon">&#x2302;</span>
-				<?php echo get_string_from_obj($config->currentLocation); ?></div>
+				<?php echo get_string_from_obj($config->currentLocation); ?>
+			</div>
 			<div class="topbar-lang">
 				<ul class="list"><?php render_menu($config); ?></ul>
 			</div>

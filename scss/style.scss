@@ -165,7 +165,7 @@ section {
 
 	font-size: 12px;
 	@include fontReg();
-	color: lighten($main-color, 20%);
+	color: lighten($main-color, 50%);
 	
 	&-lang {
 		display: block;
