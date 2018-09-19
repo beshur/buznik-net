@@ -1,7 +1,7 @@
  RewriteEngine On
 # Show needed language
-RewriteCond %{REQUEST_URI} !php$
-RewriteRule ^(eng|rus|ukr)$ index.php?lang=$1 [NC,L]
+#RewriteCond %{REQUEST_URI} !php$
+#RewriteRule ^(eng|rus|ukr)$ index.php?lang=$1 [NC,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

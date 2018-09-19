@@ -164,7 +164,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-ssh');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['imagemin']);
+    grunt.registerTask('build', ['imagemin', 'sass', 'postcss']);
     grunt.registerTask('deploy', ['build', 'sftp:deploy', 'sshexec:cache']);
 
 };

@@ -7,4 +7,9 @@
 config.json
 text_*.html
 index_*.html
+index.html
+rus.html
+ukr.html
+eng.html
 *.log
+package-lock.json

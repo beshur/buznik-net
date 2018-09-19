@@ -9,7 +9,7 @@ if ( !defined('ABSPATH') )
 require_once ABSPATH . '/config.php';
 require_once ABSPATH . '/lang_strings.php';
 
-$lang = 'rus';
+$lang = 'eng';
 if (isset($_GET['lang'])) {
 	$lang = $_GET['lang'];
 }
@@ -48,7 +48,10 @@ function render_menu($config) {
 		if ($key == $lang) {
 			$ret .= sprintf(' class="active">%s', $langValue);
 		} else {
-			$ret .= sprintf('><a href="/'.$key.'">%s</a>', $langValue);
+			if ($key === 'eng') {
+				$key = 'index';
+			}
+			$ret .= sprintf('><a href="/'.$key.'.html">%s</a>', $langValue);
 		}
 		$ret .= '</li>';
 	}
@@ -60,50 +63,6 @@ function render_text($lang) {
 	include('text_' . $lang . '.html');
 }
 
-?><!DOCTYPE html>
-<html>
-<head>
-	<title><?php render_string('name'); ?></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style type="text/css"><?php include('dist/css/main.css'); ?></style>
-	<link href="favicon.ico?v=1" rel="shortcut icon" />
-</head>
+include('index_page_template.php');
 
-<body>
-	<div id="container">
-		<div class="topbar">
-			<div class="topbar-location" title="<?php render_string('location'); ?>">
-				<?php echo get_string_from_obj($config->currentLocation); ?>
-			</div>
-			<div class="topbar-lang">
-				<ul class="list"><?php render_menu($config); ?></ul>
-			</div>
-		</div>
-		<section class="resume">
-			<header><h1>
-				<span class="shu icon-shu"><?php include('dist/img/shu.svg');?></span>
-				<?php render_string('name'); ?>
-			</h2></header>
-		
-			<div class="resume-main">
-				<?php render_text($lang); ?>
-			</div><!--
-
-		 --><div class="links">
-				<div><?php render_string('can'); ?>:</div>
-				<ul class="list">
-					<li><a href="https://github.com/beshur" target="_blank">github.com/beshur</a></li>
-					<li><a href="https://drive.google.com/file/d/1PsF0JMA2wo76udGsQdc0dnFSl4_BMBo1/view?usp=sharing" target="_blank"><?php render_string('cv'); ?></a></li>
-				</ul>
-				<div><?php render_string('connect'); ?>:</div>
-				<ul class="list">
-					<li>Skype: <a href="skype:alexbuznik">alexbuznik</a></li>
-					<li>E-mail: <a href="mailto:shu@buznik.net">shu@buznik.net</a></li>
-					<li><a href="https://twitter.com/beshur" target="_blank">twitter.com/beshur</a></li>
-				</ul>
-			</div>
-		</section>
-	</div>
-</body>
-</html>
+?>
