@@ -30,7 +30,7 @@ module.exports = function(grunt) {
             }
         },//end Uglify Task;
 
-        //the Sass Task 
+        //the Sass Task
         sass: {
             sass_my_files : {
 
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
         sftp: {
             deploy: {
                 files: {
-                    "./": ["dist/img/*", "dist/css/*.css", "*.php", "cron.sh", "*.ico"]
+                    "./": ["dist/img/*", "dist/css/*.css", "*.php", "cron.sh", "*.png"]
                 },
                 options: {
                     path: '<%= config.path %>',
