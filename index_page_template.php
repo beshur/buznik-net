@@ -9,7 +9,7 @@ if ( !defined('ABSPATH') )
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style type="text/css"><?php include('dist/css/main.css'); ?></style>
-  <link href="favicon.ico?v=1" rel="shortcut icon" />
+  <link href="./favicon.png" rel="shortcut icon" />
 </head>
 
 <body>
