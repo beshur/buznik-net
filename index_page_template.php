@@ -23,11 +23,22 @@ if ( !defined('ABSPATH') )
       </div>
     </div>
     <section class="resume">
-      <header><h1>
-        <span class="shu icon-shu"><?php include('dist/img/shu.svg');?></span>
-        <?php render_string('name'); ?>
-      </h2></header>
-    
+      <header>
+        <div class="pic">
+          <span class="flipper">
+            <span class="shu icon-shu">
+              <span class="face front"></span>
+              <span class="face back">
+                <?php include('dist/img/shu.svg');?>
+              </span>
+            </span>
+          </span>
+        </div>
+        <h1 ontouchstart="document.querySelector('.flipper').classList.toggle('hover');">
+          <?php render_string('name'); ?>
+        </h1>
+      </header>
+
       <div class="resume-main">
         <?php render_text($lang); ?>
       </div><!--
