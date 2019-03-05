@@ -130,7 +130,7 @@ module.exports = function(grunt) {
         sftp: {
             deploy: {
                 files: {
-                    "./": ["dist/img/*", "dist/css/*.css", "*.php", "cron.sh", "*.png"]
+                    "./": ["dist/img/*", "dist/css/*.css", "*.php", "cron.sh", "*.ico"]
                 },
                 options: {
                     path: '<%= config.path %>',
