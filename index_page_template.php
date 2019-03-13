@@ -51,7 +51,6 @@ if ( !defined('ABSPATH') )
         </ul>
         <div><?php render_string('connect'); ?>:</div>
         <ul class="list">
-          <li>Skype: <a href="skype:alexbuznik">alexbuznik</a></li>
           <li>E-mail: <a href="mailto:shu@buznik.net">shu@buznik.net</a></li>
           <li><a href="https://twitter.com/beshur" target="_blank">twitter.com/beshur</a></li>
         </ul>
