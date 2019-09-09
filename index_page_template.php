@@ -52,6 +52,7 @@ if ( !defined('ABSPATH') )
         <div><?php render_string('connect'); ?>:</div>
         <ul class="list">
           <li>E-mail: <a href="mailto:shu@buznik.net">shu@buznik.net</a></li>
+          <li><a href="https://m.me/alexbuznik" target="_blank">Facebook Messenger</a></li>
           <li><a href="https://twitter.com/beshur" target="_blank">twitter.com/beshur</a></li>
         </ul>
       </div>
