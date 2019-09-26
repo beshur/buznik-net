@@ -1,13 +1,15 @@
 <?php
 if ( !defined('ABSPATH') )
   die();
+  date_default_timezone_set('EET');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title><?php render_string('name'); ?></title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="last-modified" content="<?php echo date('Y-m-d'); ?>" />
   <style type="text/css"><?php include('dist/css/main.css'); ?></style>
   <link href="./favicon.ico?v=2" rel="shortcut icon" />
 </head>
@@ -38,9 +40,9 @@ if ( !defined('ABSPATH') )
 
       <div class="resume-main">
         <?php render_text($lang); ?>
-      </div><!--
+      </div>
 
-     --><div class="links">
+      <div class="links">
         <div><?php render_string('can'); ?>:</div>
         <ul class="list">
           <li><a href="https://github.com/beshur" target="_blank">github.com/beshur</a></li>
