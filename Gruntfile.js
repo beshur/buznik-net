@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
+    config = process.env;
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        config: grunt.file.readJSON('config.json'),
 
         uglify: {
             //Run The Uglify Task For Javascript_Files
@@ -57,23 +57,6 @@ module.exports = function(grunt) {
             }
         },
 
-        svgmin: {
-            options: {
-                plugins: [
-                    {
-                        removeViewBox: false
-                    }, {
-                        removeUselessStrokeAndFill: false
-                    }
-                ]
-            },
-            dist: {
-                files: {
-                    'img/shu.svg': 'svg/shu.svg'
-                }
-            }
-        },
-
         imagemin: {
             dynamic: {                         // Another target
                 files: [{
@@ -82,21 +65,6 @@ module.exports = function(grunt) {
                     src: ['**/*.{png,jpg,gif,svg}'],   // Actual patterns to match
                     dest: 'dist/img'                  // Destination path prefix
                 }]
-            }
-        },
-
-
-        grunticon: {
-            myIcons: {
-                    files: [{
-                        expand: true,
-                        cwd: 'img/',
-                        src: ['*.svg', '*.png'],
-                        dest: "dist/img64"
-                    }],
-                options: {
-                    loadersnippet: "grunticon.loader.js",
-                }
             }
         },
 
@@ -133,9 +101,9 @@ module.exports = function(grunt) {
                     "./": ["dist/img/*", "dist/css/*.css", "*.php", "cron.sh", "*.ico"]
                 },
                 options: {
-                    path: '<%= config.path %>',
-                    host: '<%= config.host %>',
-                    username: '<%= config.username %>',
+                    path: '<%= config.REMOTE_PATH %>',
+                    host: '<%= config.REMOTE_HOST %>',
+                    username: '<%= config.REMOTE_USERNAME %>',
                     privateKey: grunt.file.read(process.env.HOME + "/.ssh/id_rsa"),
                     createDirectories: true,
                     showProgress: true
@@ -145,10 +113,10 @@ module.exports = function(grunt) {
 
         sshexec: {
             cache: {
-                command: 'cd <%=config.path%> && sh cron.sh',
+                command: 'cd <%= config.REMOTE_PATH %> && sh cron.sh',
                 options: {
-                    host: '<%= config.host %>',
-                    username: '<%= config.username %>',
+                    host: '<%= config.REMOTE_HOST %>',
+                    username: '<%= config.REMOTE_USERNAME %>',
                     privateKey: grunt.file.read(process.env.HOME + "/.ssh/id_rsa"),
                 }
             }
@@ -160,7 +128,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.loadNpmTasks('grunt-grunticon');
     grunt.loadNpmTasks('grunt-ssh');
 
     grunt.registerTask('default', ['watch']);

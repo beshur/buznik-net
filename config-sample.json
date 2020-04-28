@@ -3,7 +3,4 @@
   "languages": ["eng", "rus", "ukr"],
   "text_location": "",
   "currentLocation": ["Одесса", "Одеса", "Odesa, Ukraine"],
-  "host": "[SSH HOST]",
-  "path": "[REMOTE PATH]",
-  "username": "[SSH USERNAME]"
 }
