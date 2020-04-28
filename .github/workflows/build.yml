@@ -5,9 +5,8 @@ name: Build Assets
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    tags:
+    - '*'
 
 jobs:
 
@@ -31,8 +30,15 @@ jobs:
     - run: mkdir "$HOME/.ssh" && touch "$HOME/.ssh/id_rsa"
     - run: npm ci
     - run: npm run build
-    - uses: actions/upload-artifact@v1
-      with:
-        name: dist
-        path: dist
+    - run: zip -r dist.zip dist
 
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "dist.zip"
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Invoke deployment hook
+      uses: distributhor/workflow-webhook@v1
+      env:
+        webhook_url: ${{ secrets.webhook_url }}
+        webhook_secret: ${{ secrets.webhook_secret }}
+        webhook_auth: "deploy:${{ secrets.webhook_code }}"

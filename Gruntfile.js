@@ -53,7 +53,7 @@ module.exports = function(grunt) {
                 ]
             },
             dist: {
-                src: 'css/*.css'
+                src: 'dist/css/*.css'
             }
         },
 
