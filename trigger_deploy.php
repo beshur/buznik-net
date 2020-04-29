@@ -43,7 +43,8 @@ $shell_actions = array(
   'wget ' . DOWNLOAD_URL . ' -O ' . $tmp_file_name,
   'unzip -o ' . $tmp_file_name,
   'rm ' . $tmp_file_name,
-  'touch hook_log.txt');
+  'touch hook_log.txt',
+  'sh deploy_postback.sh');
 $output = shell_exec(join($shell_actions, ' && '));
 
 
