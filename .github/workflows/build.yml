@@ -1,0 +1,57 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Build Assets
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache node modules
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.6'
+    - run: gem install sass
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: mkdir "$HOME/.ssh" && touch "$HOME/.ssh/id_rsa"
+    - run: npm ci
+    - run: npm run build
+    - run: zip -r dist.zip dist
+
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "dist.zip"
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Invoke deployment hook
+      uses: distributhor/workflow-webhook@v1
+      env:
+        webhook_url: ${{ secrets.webhook_url }}
+        webhook_secret: ${{ secrets.webhook_secret }}
+        webhook_auth: "deploy:${{ secrets.webhook_code }}"

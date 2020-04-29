@@ -12,3 +12,4 @@ rus.html
 ukr.html
 eng.html
 *.log
+deploy-config.sh
