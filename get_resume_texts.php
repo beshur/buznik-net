@@ -6,41 +6,40 @@
 if (php_sapi_name() !== 'cli' && !defined('ABSPATH')) {
 	die('1337!');
 }
-$success = true;
 include('config.php');
+
+// show that we need minimum from WP
+define('SHORTINIT', true);
+
+// load WordPress environment and database connection
+require_once( dirname(__FILE__) . '/j/wp-load.php' );
+
+// only DB
+// globals $wp, $wp_query, $wp_the_query are not set...
+global $wpdb;
+$result = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id='". $config->page_id . "'");
+
+$success = true;
 if ($config->auto_update == false) {
 	return;
 }
 
-function parseHeaders( $headers ) {
-    $head = array();
-    foreach( $headers as $k=>$v ) {
-        $t = explode( ':', $v, 2 );
-        if( isset( $t[1] ) ) {
-            $head[ trim($t[0]) ] = trim( $t[1] );
-        } else {
-            $head[] = $v;
-            if( preg_match( '#HTTP/[0-9\.]+\s+([0-9]+)#',$v, $out ) ) {
-                $head['response_code'] = intval($out[1]);
-            }
-        }
-    }
-    return $head;
-}
-
-
-$texts = $config->languages;
-foreach ($texts as $key) {
+$keys = $config->languages;
+$texts = [];
+foreach ($keys as $key) {
 	$filename = 'text_'.$key.'.html';
-	$fileUrl = $config->text_location.$filename;
-	$try_file = file_get_contents($fileUrl);
-	$headers = parseHeaders($http_response_header);
-	printf("file: %s - %d - %s\n", $filename, $headers['response_code'],
-		($headers['response_code'] === 200) ? 'OK' : 'NOT OK');
-	if ($headers['response_code'] === 200) {
-		$texts[$key] = $try_file;
+	$text = "";
+	foreach($result as $entry) {
+		$log = "key " . $key . " " . $entry->meta_key;
+    if ($key == $entry->meta_key) {
+			$texts[$key] = $entry->meta_value;
+			break;
+		}
+	}
+
+	if (!empty($texts[$key])) {
 		$file = fopen(dirname(__FILE__).'/'.$filename, 'w');
-		fwrite($file, $try_file);
+		fwrite($file, $texts[$key]);
 		fclose($file);
 	} else {
 		$success = false;
