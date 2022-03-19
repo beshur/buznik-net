@@ -6,8 +6,6 @@ echo "# Get resume texts:"
 php get_resume_texts.php
 echo ""
 echo "# Caching pages:"
-echo "rus.html"
-php index_page.php rus > rus.html
 echo "ukr.html"
 php index_page.php ukr > ukr.html
 echo "index.html (eng)"
