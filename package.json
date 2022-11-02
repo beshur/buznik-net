@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Buznik.net redesign (2016). Minimal for the client.",
   "scripts": {
+    "start": "grunt",
     "build": "grunt build",
     "deploy": "grunt deploy"
   },
@@ -25,7 +26,7 @@
     "defaults"
   ],
   "engines": {
-    "node": "14.19.x"
+    "node": "18.x.x"
   },
   "dependencies": {
     "imagemin-gifsicle": "^7.0.0"
@@ -42,5 +43,9 @@
     "grunt-postcss": "^0.9.0",
     "grunt-ssh": "^0.12.9",
     "pixrem": "^3.0.0"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false
   }
 }

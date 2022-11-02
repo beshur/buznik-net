@@ -8,7 +8,7 @@ if ( !defined('ABSPATH') )
 
 require_once ABSPATH . '/config.php';
 require_once ABSPATH . '/lang_strings.php';
-
+$config = new Config();
 // try get texts if they are not present
 if (!file_exists('index.html')) {
 	include_once('get_resume_texts.php');

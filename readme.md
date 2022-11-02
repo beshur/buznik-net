@@ -4,6 +4,11 @@ Buznik.net redesign (started 2016). Minimal for the client.
 
 This is a repository for my home page.
 
+
+## Development
+
+
+
 ## Building
 
 PHP template generation requires a valid config.json file (see `config-sample.json`).
