@@ -3,10 +3,6 @@
  * Get and cache resume texts from a remote server
  * using cron tab.
  */
-if (file_exists('_local')) {
-	echo "local";
-	return;
-}
 if (php_sapi_name() !== 'cli' && !defined('ABSPATH')) {
 	die('1337!');
 }

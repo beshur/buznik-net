@@ -4,14 +4,9 @@ Buznik.net redesign (started 2016). Minimal for the client.
 
 This is a repository for my home page.
 
+## Building and development
 
-## Development
-
-
-
-## Building
-
-PHP template generation requires a valid config.json file (see `config-sample.json`).
+PHP template generation requires a valid config.php file (see `config-sample.json`).
 
 Deploying via Grunt requires correct env variables (see `deploy-config-sample.sh`).
 
@@ -20,3 +15,4 @@ Deploying via Grunt requires correct env variables (see `deploy-config-sample.sh
 - `npm install`, well, to install dependencies
 - `npm run build` to build assets and static html files, to test staff locally
 - `npm run deploy` to build assets (includes `build` job) and to deploy them to remote
+- `npm start` to start watcher for development.
