@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Buznik.net redesign (2016). Minimal for the client.",
   "scripts": {
-    "start": "grunt",
+    "start": "open index.html && grunt",
     "build": "grunt build",
     "deploy": "grunt deploy"
   },

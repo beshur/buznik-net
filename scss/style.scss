@@ -154,6 +154,12 @@ section {
             }
             &.back {
               transform: rotateY(180deg);
+
+              @media (prefers-color-scheme: dark) {
+                & {
+                  filter: invert(1);
+                }
+              }
             }
           }
           svg {
