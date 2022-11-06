@@ -6,8 +6,6 @@ This is a repository for my home page.
 
 ## Building and development
 
-PHP template generation requires a valid config.php file (see `config-sample.json`).
-
 Deploying via Grunt requires correct env variables (see `deploy-config-sample.sh`).
 
 - install ruby
