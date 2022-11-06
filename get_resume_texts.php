@@ -7,7 +7,7 @@ if (php_sapi_name() !== 'cli' && !defined('ABSPATH')) {
 	die('1337!');
 }
 include('config.php');
-
+$config = new Config();
 // show that we need minimum from WP
 define('SHORTINIT', true);
 

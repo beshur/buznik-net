@@ -1,10 +1,13 @@
 $main-color: #000;
+$main-color-dark: #dedede;
 $brand-color: #3e72aa;
+$brand-color-dark: #1d7ee5;
 $bg-color: #fff;
+$bg-color-dark: #000;
 
 @mixin fontReg() {
-	font-family: Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
 }
 @mixin fontAcc() {
-	font-family: Geneva, Tahoma, sans-serif;
+  font-family: Geneva, Tahoma, sans-serif;
 }

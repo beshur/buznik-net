@@ -11,6 +11,7 @@ body {
   color: $main-color;
   background: $bg-color;
 }
+
 img {
   display: inline-block;
   max-width: 100%;
@@ -51,7 +52,7 @@ a {
   &,
   &:active,
   &:visited {
-    color: #2e4f73;
+    color: $brand-color;
   }
   text-decoration: none;
   border-bottom: 1px solid #ccc;
@@ -153,6 +154,12 @@ section {
             }
             &.back {
               transform: rotateY(180deg);
+
+              @media (prefers-color-scheme: dark) {
+                & {
+                  filter: invert(1);
+                }
+              }
             }
           }
           svg {
@@ -226,5 +233,20 @@ section {
   .location-icon {
     position: absolute;
     margin-left: -1em;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: $main-color-dark;
+    background: $bg-color-dark;
+  }
+
+  a {
+    &,
+    &:active,
+    &:visited {
+      color: $brand-color-dark;
+    }
   }
 }
