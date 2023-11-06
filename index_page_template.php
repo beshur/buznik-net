@@ -53,6 +53,7 @@ if ( !defined('ABSPATH') )
           <li>E-mail: <a href="mailto:shu@buznik.net">shu@buznik.net</a></li>
           <li><a href="https://m.me/alexbuznik">FB Messenger</a></li>
           <li><a href="https://twitter.com/beshur">twitter.com/beshur</a></li>
+          <li style="display: none"><a rel="me" href="https://mastodon.social/@Beshur">Mastodon</a></li>
         </ul>
       </div>
     </section>
