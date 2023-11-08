@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: 18.x
       - run: mkdir "$HOME/.ssh" && touch "$HOME/.ssh/id_rsa"
-      - run: yarn
+      - run: yarn --force
       - run: yarn build
       - run: zip -r dist.zip dist
       - name: Get short SHA
