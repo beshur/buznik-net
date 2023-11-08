@@ -7,7 +7,11 @@ module.exports = function (grunt) {
       main: {
         files: [
           // includes files within path
-          { expand: true, src: ["css/*"], dest: "dist/" },
+          {
+            expand: true,
+            src: ["css/*", "img/*", "*.php", "cron.sh", "*.ico"],
+            dest: "dist/",
+          },
         ],
       },
     },
