@@ -5,53 +5,48 @@ name: Build Assets
 
 on:
   push:
-    tags:
-    - '*'
+    branches:
+      - "master"
+      - "deploy"
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x]
-
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Cache node modules
-      uses: actions/cache@v1
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+      - name: Cache node modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.6'
-    - run: gem install sass
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: mkdir "$HOME/.ssh" && touch "$HOME/.ssh/id_rsa"
-    - run: npm ci
-    - run: npm run build
-    - run: zip -r dist.zip dist
-
-    - uses: ncipollo/release-action@v1
-      with:
-        artifacts: "dist.zip"
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Invoke deployment hook
-      uses: distributhor/workflow-webhook@v1
-      env:
-        webhook_url: ${{ secrets.webhook_url }}
-        webhook_secret: ${{ secrets.webhook_secret }}
-        webhook_auth: "deploy:${{ secrets.webhook_code }}"
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - run: mkdir "$HOME/.ssh" && touch "$HOME/.ssh/id_rsa"
+      - run: yarn
+      - run: yarn build
+      - run: zip -r dist.zip dist
+      - name: Get short SHA
+        id: sha_short
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.sha_short.outputs.sha_short }}
+      - name: Invoke deployment hook
+        uses: distributhor/workflow-webhook@v1
+        env:
+          webhook_url: ${{ secrets.webhook_url }}
+          webhook_secret: ${{ secrets.webhook_secret }}
+          webhook_auth: "deploy:${{ secrets.webhook_code }}"
