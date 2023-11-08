@@ -35,7 +35,7 @@ jobs:
       - run: mkdir "$HOME/.ssh" && touch "$HOME/.ssh/id_rsa"
       - run: yarn --force
       - run: yarn build
-      - run: zip -r dist.zip dist
+      - run: zip -r dist.zip dist/*
       - name: Get short SHA
         id: sha_short
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
