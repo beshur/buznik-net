@@ -232,6 +232,6 @@ section.resume .links ul li {
   a:active,
   a:visited {
     color: var(--brandColorDark);
-    border-bottom-color: hsl(from var(--bgColorDark) h s calc(l + 25%));
+    border-bottom-color: #5277ae;
   }
 }
