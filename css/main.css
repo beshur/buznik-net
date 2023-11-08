@@ -1,0 +1,237 @@
+:root {
+  --mainColor: #000;
+  --mainColorDark: #dedede;
+  --brandColor: #3e72aa;
+  --brandColorDark: #2a70b8;
+  --bgColor: #fff;
+  --bgColorDark: #162331;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  color: var(--mainColor);
+  background: var(--bgColor);
+}
+
+img {
+  display: inline-block;
+  max-width: 100%;
+}
+
+* {
+  box-sizing: content-box;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.df {
+  display: flex;
+}
+
+ul.list {
+  margin: 0;
+  padding-left: 0;
+}
+ul.list li {
+  display: inline;
+  padding-left: 15px;
+  list-style-type: none;
+}
+ul.list li:first-child {
+  padding-left: 0;
+}
+
+.bloglist {
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
+}
+a,
+a:active,
+a:visited {
+  color: var(--brandColor);
+}
+a:hover {
+  border-bottom-color: transparent;
+}
+
+/* */
+#container {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding-left: 200px;
+  padding-right: 200px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+@media screen and (max-width: 768px) {
+  #container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+section {
+  margin: 90px auto;
+  font-size: 14px;
+  line-height: 1.5;
+}
+@media screen and (max-width: 768px) {
+  section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
+}
+section.resume header {
+  position: relative;
+  margin-bottom: 20px;
+}
+section.resume header h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: normal;
+}
+@media screen and (max-width: 768px) {
+  section.resume header h1 {
+    position: relative;
+    z-index: 1;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 21px;
+    padding-top: 25px;
+  }
+}
+section.resume header .pic {
+  position: absolute;
+  width: 100%;
+}
+section.resume header .pic .flipper {
+  position: absolute;
+  top: -14px;
+  left: -72px;
+  width: 60px;
+  height: 60px;
+  perspective: 1000px;
+}
+section.resume header .pic .flipper:hover .shu,
+section.resume header .pic .flipper.hover .shu {
+  transform: rotateY(180deg);
+}
+section.resume header .pic .shu {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: 0.35s ease-in-out;
+  transform-style: preserve-3d;
+}
+section.resume header .pic .shu .face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+section.resume header .pic .shu .face.front {
+  background: url(./dist/img/face5.jpg) 0 0 no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+}
+section.resume header .pic .shu .face.back {
+  transform: rotateY(180deg);
+}
+@media (prefers-color-scheme: dark) {
+  section.resume header .pic .shu .face.back {
+    filter: invert(1);
+  }
+}
+section.resume header .pic .shu svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  transform: translate3d(-50%, -50%, 0);
+}
+section.resume header .pic .shu svg g {
+  fill: var(--mainColor);
+}
+@media screen and (max-width: 768px) {
+  section.resume header .pic .flipper {
+    top: 4px;
+    left: auto;
+    right: 0;
+  }
+}
+section.resume .resume-main {
+  font-family: Geneva, Tahoma, sans-serif;
+  max-width: 500px;
+}
+section.resume .links {
+  padding-top: 25px;
+  font-family: Geneva, Tahoma, sans-serif;
+}
+section.resume .links ul {
+  font-family: Helvetica, Arial, sans-serif;
+  margin-bottom: 20px;
+  font-size: 0;
+}
+section.resume .links ul li {
+  display: block;
+  width: 50%;
+  padding-left: 0px;
+  font-size: 12px;
+  line-height: 2;
+}
+
+/* */
+.topbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-size: 12px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: gray;
+}
+.topbar-lang {
+  display: block;
+  text-transform: lowercase;
+}
+.topbar .location-icon {
+  position: absolute;
+  margin-left: -1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--mainColorDark);
+    background: var(--bgColorDark);
+  }
+  a,
+  a:active,
+  a:visited {
+    color: var(--brandColorDark);
+    border-bottom-color: hsl(from var(--bgColorDark) h s calc(l + 25%));
+  }
+}

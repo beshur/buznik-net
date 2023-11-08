@@ -1,8 +1,5 @@
-/css
 /node_modules
-/js/dist
 .DS_Store
-.sass-cache/
 /dist
 config.json
 text_*.html
