@@ -3,43 +3,12 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
 
-    uglify: {
-      //Run The Uglify Task For Javascript_Files
-      uglify_js_files: {
-        files: {
-          "dist/js/script.js": "js/build/*.js",
-        },
-      },
-      // The Global Options
-      options: {
-        mangle: {},
-        compress: {},
-        beautify: false,
-        expression: false,
-        report: "max",
-        sourceMap: false,
-        sourceMapName: undefined,
-        sourceMapIn: undefined,
-        sourceMapIncludeSources: false,
-        enclose: undefined,
-        wrap: undefined,
-        exportAll: false,
-        preserveComments: undefined,
-        banner: "/*Uglify*/",
-        footer: "",
-      },
-    }, //end Uglify Task;
-
-    //the Sass Task
-    sass: {
-      sass_my_files: {
-        files: {
-          "dist/css/main.css": "scss/main.scss",
-        },
-        options: {
-          style: "compressed",
-          precision: "7",
-        },
+    copy: {
+      main: {
+        files: [
+          // includes files within path
+          { expand: true, src: ["css/*"], dest: "dist/" },
+        ],
       },
     },
 
@@ -73,9 +42,9 @@ module.exports = function (grunt) {
     //The Watch Task
     watch: {
       // Watching For Changes
-      watch_sass_files: {
-        files: ["scss/**/*.scss", "*.html"],
-        tasks: ["sass", "postcss", "buildHtml"],
+      watch_files: {
+        files: ["css/*.css", "*.html"],
+        tasks: ["copy:main", "postcss", "buildHtml"],
       },
       options: {
         spawn: true,
@@ -121,8 +90,8 @@ module.exports = function (grunt) {
     },
   });
 
+  grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks("grunt-contrib-sass");
   grunt.loadNpmTasks("grunt-postcss");
   grunt.loadNpmTasks("grunt-contrib-imagemin");
   grunt.loadNpmTasks("grunt-ssh");
@@ -133,6 +102,6 @@ module.exports = function (grunt) {
     grunt.log.writeln(result);
   });
   grunt.registerTask("default", ["watch"]);
-  grunt.registerTask("build", ["imagemin", "sass", "postcss"]);
+  grunt.registerTask("build", ["imagemin", "copy:main", "postcss"]);
   grunt.registerTask("deploy", ["build", "sftp:deploy", "sshexec:cache"]);
 };
