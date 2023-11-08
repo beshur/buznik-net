@@ -16,10 +16,10 @@ $lang_strings = array(
 		'Олександр Бузник',
 		'Alex Buznik'
 	),
-	'can' => array(
+	'work' => array(
 		'Умею',
-		'Вмію',
-		'Can do'
+		'Робоче',
+		'Work stuff'
 	),
 	'connect' => array(
 		'Связаться',

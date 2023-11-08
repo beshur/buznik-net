@@ -43,16 +43,18 @@ if ( !defined('ABSPATH') )
       </div>
 
       <div class="links">
-        <div><?php render_string('can'); ?>:</div>
+        <div><?php render_string('work'); ?>:</div>
         <ul class="list">
+          <li>Current project:<a href="https://x-bees.com/" target="_blank">x-bees</a></li>
           <li><a href="https://github.com/beshur" target="_blank">github.com/beshur</a></li>
+          <li><a href="https://linkedin.com/in/alexbuznik" target="_blank">LinkedIn</a></li>
           <li><a href="/cv.pdf" target="_blank"><?php render_string('cv'); ?></a></li>
         </ul>
         <div><?php render_string('connect'); ?>:</div>
         <ul class="list">
           <li>E-mail: <a href="mailto:shu@buznik.net">shu@buznik.net</a></li>
-          <li><a href="https://m.me/alexbuznik">FB Messenger</a></li>
-          <li><a href="https://twitter.com/beshur">twitter.com/beshur</a></li>
+          <li><a href="https://instagram.com/shu.makes">Hobby Instagram (ukr)</a></li>
+          <li style="display: none"><a rel="me" href="https://mastodon.social/@Beshur">Mastodon</a></li>
         </ul>
       </div>
     </section>
