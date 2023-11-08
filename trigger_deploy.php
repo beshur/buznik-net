@@ -47,5 +47,6 @@ $shell_actions = array(
   'sh deploy_postback.sh');
 $output = shell_exec(join($shell_actions, ' && '));
 
+echo $output;
 
 header('HTTP/1.1 200 OK');
