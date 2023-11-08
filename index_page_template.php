@@ -54,7 +54,7 @@ if ( !defined('ABSPATH') )
         <ul class="list">
           <li>E-mail: <a href="mailto:shu@buznik.net">shu@buznik.net</a></li>
           <li><a href="https://instagram.com/shu.makes">Hobby Instagram (ukr)</a></li>
-          <li style="display: none"><a rel="me" href="https://mastodon.social/@Beshur">Mastodon</a></li>
+          <li style="display: none">1<a rel="me" href="https://mastodon.social/@Beshur">Mastodon</a></li>
         </ul>
       </div>
     </section>
