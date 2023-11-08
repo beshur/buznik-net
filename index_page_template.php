@@ -45,10 +45,10 @@ if ( !defined('ABSPATH') )
       <div class="links">
         <div><?php render_string('work'); ?>:</div>
         <ul class="list">
-          <li>Current project:<a href="https://x-bees.com/" target="_blank">x-bees</a></li>
-          <li><a href="https://github.com/beshur" target="_blank">github.com/beshur</a></li>
-          <li><a href="https://linkedin.com/in/alexbuznik" target="_blank">LinkedIn</a></li>
-          <li><a href="/cv.pdf" target="_blank"><?php render_string('cv'); ?></a></li>
+          <li>Current project: <a href="https://x-bees.com/">x-bees</a></li>
+          <li><a href="https://github.com/beshur">github.com/beshur</a></li>
+          <li><a href="https://linkedin.com/in/alexbuznik">LinkedIn</a></li>
+          <li><a href="/cv.pdf"><?php render_string('cv'); ?></a></li>
         </ul>
         <div><?php render_string('connect'); ?>:</div>
         <ul class="list">

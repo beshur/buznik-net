@@ -8,31 +8,25 @@ if (php_sapi_name() !== "cli" && !defined('ABSPATH')) {
 }
 
 $lang_strings = array(
-	'rus' => array('Рус', 'Рус', 'Рус'),
 	'ukr' => array('Укр', 'Укр', 'Укр'),
 	'eng' => array('Eng', 'Eng', 'Eng'),
 	'name' => array(
-		'Александр Бузник',
 		'Олександр Бузник',
 		'Alex Buznik'
 	),
 	'work' => array(
-		'Умею',
 		'Робоче',
 		'Work stuff'
 	),
 	'connect' => array(
-		'Связаться',
 		'Зв`язатися',
 		'Contact'
 	),
 	'cv' => array(
 		'Резюме',
-		'Резюме',
 		'CV'
 	),
 	'location' => array(
-		'Нахожусь',
 		'Знаходжусь',
 		'Location'
 	)
@@ -43,10 +37,10 @@ function get_string($key, $lang) {
 	$pos = 0;
 	switch ($lang) {
 		case 'ukr':
-			$pos = 1;
+			$pos = 0;
 			break;
 		case 'eng':
-			$pos = 2;
+			$pos = 1;
 			break;
 		default:
 			break;
