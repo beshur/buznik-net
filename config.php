@@ -1,8 +1,5 @@
 <?php
 
-class Config
-{
-    public $page_id = 2562;
-    public $auto_update = true;
-		public $languages = ["eng", "ukr"];
-}
+define("B_PAGE_ID", 2562);
+define("B_AUTO_UPDATE", true);
+define("B_LANGUAGES", ["eng", "ukr"]);
