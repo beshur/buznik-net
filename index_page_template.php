@@ -10,7 +10,7 @@ if ( !defined('ABSPATH') )
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="last-modified" content="<?php echo date('Y-m-d'); ?>" />
-  <style type="text/css"><?php include('dist/css/main.css'); ?></style>
+  <style type="text/css"><?php include('css/main.css'); ?></style>
   <link href="./favicon.ico?v=2" rel="shortcut icon" />
 </head>
 
@@ -28,7 +28,7 @@ if ( !defined('ABSPATH') )
             <span class="shu icon-shu">
               <span class="face front"></span>
               <span class="face back">
-                <?php include('dist/img/shu.svg');?>
+                <?php include('img/shu.svg');?>
               </span>
             </span>
           </span>
