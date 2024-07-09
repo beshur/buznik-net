@@ -43,6 +43,7 @@ if (require_auth()) {
 $tmp_file_name = '_tmp_dist.zip';
 $shell_actions = array(
   'wget ' . DOWNLOAD_URL . ' -O ' . $tmp_file_name,
+  'mv dist dist_old',
   'unzip -o ' . $tmp_file_name,
   'cp -rf dist/* ./',
   'rm ' . $tmp_file_name,
