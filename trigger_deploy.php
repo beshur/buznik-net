@@ -24,6 +24,8 @@ function require_auth() {
     $_SERVER['PHP_AUTH_PW']   != $AUTH_PASS
   );
 
+  error_log('is_not_authenticated: ' . $is_not_authenticated);
+
   if ($is_not_authenticated) {
     header('HTTP/1.1 401 Authorization Required');
     header('WWW-Authenticate: Basic realm="Access denied"');
@@ -42,7 +44,7 @@ $tmp_file_name = '_tmp_dist.zip';
 $shell_actions = array(
   'wget ' . DOWNLOAD_URL . ' -O ' . $tmp_file_name,
   'unzip -o ' . $tmp_file_name,
-  'cp -r dist/* ./',
+  'cp -rf dist/* ./dist/',
   'rm ' . $tmp_file_name,
   'sh cron.sh',
   'touch hook_log.txt',
