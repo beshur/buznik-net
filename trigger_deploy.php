@@ -9,7 +9,6 @@ if ( !defined('ABSPATH') )
 
 require_once ABSPATH . '/trigger_code.php';
 
-define(DOWNLOAD_URL, 'https://github.com/beshur/buznik-net/releases/latest/download/dist.zip');
 
 $realm = 'Restricted area';
 
@@ -40,17 +39,7 @@ if (require_auth()) {
   echo 'You are from github, I suppose';
 }
 
-$tmp_file_name = '_tmp_dist.zip';
-$shell_actions = array(
-  'wget ' . DOWNLOAD_URL . ' -O ' . $tmp_file_name,
-  'mv dist dist_old',
-  'unzip -o ' . $tmp_file_name,
-  'cp -rf dist/* ./',
-  'rm ' . $tmp_file_name,
-  'sh cron.sh',
-  'touch hook_log.txt',
-  'sh deploy_postback.sh');
-$output = shell_exec(join($shell_actions, ' && '));
+$output = shell_exec('sh deploy.sh >> hook_log.txt')
 
 echo $output;
 
