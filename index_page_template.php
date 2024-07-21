@@ -45,7 +45,7 @@ if ( !defined('ABSPATH') )
       <div class="links">
         <div><?php render_string('work'); ?>:</div>
         <ul class="list">
-          <li>Current project: <a href="https://x-bees.com/">x-bees</a></li>
+          <li>Current project: <a href="https://starkfuture.com/">Stark Future</a></li>
           <li><a href="https://github.com/beshur">github.com/beshur</a></li>
           <li><a href="https://linkedin.com/in/alexbuznik">LinkedIn</a></li>
           <li><a href="/cv.pdf"><?php render_string('cv'); ?></a></li>
