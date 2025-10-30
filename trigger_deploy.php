@@ -39,7 +39,7 @@ if (require_auth()) {
   echo 'You are from github, I suppose';
 }
 
-$output = shell_exec('sh deploy.sh >> hook_log.txt')
+$output = shell_exec('sh deploy.sh >> hook_log.txt');
 
 echo $output;
 
