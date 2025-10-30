@@ -11,3 +11,5 @@ echo "ukr.html"
 php index_page.php ukr > ukr.html
 echo "index.html (eng)"
 php index_page.php eng > index.html
+cp ukr.html ../ukr.html
+cp index.html ../index.html
