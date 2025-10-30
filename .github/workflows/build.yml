@@ -44,6 +44,10 @@ jobs:
           artifacts: "dist.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.sha_short.outputs.sha_short }}
+          name: "Release (${{ steps.sha_short.outputs.sha_short }})"
+          draft: false
+          prerelease: false
+          makeLatest: true
       - name: Invoke deployment hook
         uses: distributhor/workflow-webhook@v1
         env:
