@@ -11,3 +11,7 @@ eng.html
 *.log
 deploy-config.sh
 sftp.json
+
+
+# Ignore kluster.ai Verify Code rules
+.cursor/rules/kluster-code-verify.mdc

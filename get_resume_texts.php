@@ -12,7 +12,7 @@ require_once dirname(__FILE__) . '/config.php';
 define('SHORTINIT', true);
 
 // load WordPress environment and database connection
-require_once dirname(__FILE__) . '/j/wp-load.php';
+require_once dirname(__FILE__) . '/../j/wp-load.php';
 
 // only DB
 // globals $wp, $wp_query, $wp_the_query are not set...
