@@ -19,7 +19,6 @@ module.exports = function (grunt) {
     postcss: {
       options: {
         processors: [
-          require("pixrem")(), // add fallbacks for rem units
           require("autoprefixer")(), // add vendor prefixes
           require("cssnano")(), // minify the result
         ],
@@ -96,7 +95,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks("grunt-postcss");
+  grunt.loadNpmTasks("@lodder/grunt-postcss");
   grunt.loadNpmTasks("grunt-contrib-imagemin");
   grunt.loadNpmTasks("grunt-ssh");
 
