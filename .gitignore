@@ -11,6 +11,12 @@ eng.html
 *.log
 deploy-config.sh
 sftp.json
+.env
+
+# Deploy webhook secrets — never commit
+.webhook_code
+webhook_secret
+deploy_postback.sh
 
 
 # Ignore kluster.ai Verify Code rules
