@@ -18,7 +18,7 @@ if ( !defined('ABSPATH') )
   <div id="container">
     <div class="topbar">
       <div class="topbar-lang">
-        <ul class="list"><?php render_menu($config); ?></ul>
+        <ul class="list"><?php render_menu(); ?></ul>
       </div>
     </div>
     <section class="resume">

@@ -42,7 +42,7 @@ function render_string($key) {
 	echo_string($key, $lang);
 }
 
-function render_menu($config) {
+function render_menu() {
 	$langs = B_LANGUAGES;
 	$ret = '';
 	global $lang;
