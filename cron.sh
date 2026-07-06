@@ -13,3 +13,4 @@ echo "index.html (eng)"
 php index_page.php eng > index.html
 cp ukr.html ../ukr.html
 cp index.html ../index.html
+cp sitemap.xml ../sitemap.xml
