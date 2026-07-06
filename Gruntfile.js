@@ -9,7 +9,7 @@ module.exports = function (grunt) {
           // includes files within path
           {
             expand: true,
-            src: ["css/*", "img/*", "*.php", "cron.sh", "*.ico"],
+            src: ["css/*", "img/*", "*.php", "cron.sh", "*.ico", "sitemap.xml"],
             dest: "dist/",
           },
         ],
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
     sftp: {
       deploy: {
         files: {
-          "./": ["dist/img/*", "dist/css/*.css", "*.php", "cron.sh", "*.ico"],
+          "./": ["dist/img/*", "dist/css/*.css", "*.php", "cron.sh", "*.ico", "sitemap.xml"],
         },
         options: {
           path: "<%= config.REMOTE_PATH %>",
