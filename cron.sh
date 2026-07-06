@@ -1,7 +1,7 @@
 # do some cron:
 cd "$(dirname "$0")"
 # hardcode php path
-alias php="/usr/local/php73/bin/php"
+PHP="/usr/local/php85/bin/php"
 
 echo "# Get resume texts (1):"
 php get_resume_texts.php
