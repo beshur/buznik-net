@@ -1,0 +1,248 @@
+/* 17 — Mondrian light: quiet De Stijl grid, hairline black structure */
+
+:root {
+  --ground: #fbfaf6;
+  --ink: #151515;
+  --line: #151515;
+  --red: #d92e1c;
+  --blue: #2456a8;
+  --yellow: #f0c40c;
+  --hair: 1px;
+  --beam: 3px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: Futura, 'Century Gothic', 'Avenir Next', 'Trebuchet MS', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+/* ---- structure: 3px vertical beam on the left, content to its right ---- */
+
+.frame {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 40px 0 48px;
+  border-left: var(--beam) solid var(--line);
+  min-height: 100vh;
+  position: relative;
+}
+
+@media (min-width: 900px) {
+  .frame { margin-left: 14vw; }
+}
+
+/* ---- primary chips: three tiny signatures ---- */
+
+.chip {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+.chip-red    { background: var(--red); }
+.chip-blue   { background: var(--blue); }
+.chip-yellow { background: var(--yellow); }
+
+.chip-corner {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  border-left: var(--hair) solid var(--line);
+  border-bottom: var(--hair) solid var(--line);
+}
+
+.chip-h1 {
+  width: 10px;
+  height: 10px;
+  margin-left: 14px;
+  vertical-align: 6px;
+}
+
+/* ---- language switch ---- */
+
+.lang {
+  display: flex;
+  gap: 18px;
+  justify-content: flex-end;
+  padding: 22px 0 20px;
+  border-bottom: var(--hair) solid var(--line);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.lang-active { border-bottom: 2px solid var(--ink); padding-bottom: 1px; }
+
+.lang a {
+  color: var(--ink);
+  text-decoration: none;
+  opacity: 0.55;
+}
+.lang a:hover { opacity: 1; }
+
+/* ---- masthead ---- */
+
+.masthead {
+  padding: 64px 0 44px;
+  border-bottom: var(--beam) solid var(--line);
+}
+
+h1 {
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+.tagline {
+  margin-top: 10px;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+
+/* ---- links: quiet underlines ---- */
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(21, 21, 21, 0.4);
+}
+a:hover { text-decoration-color: var(--red); }
+
+/* ---- stand with Ukraine: pure CSS flag ---- */
+
+.ukraine {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ukraine-flag {
+  display: inline-block;
+  width: 21px;
+  height: 14px;
+  background: linear-gradient(to bottom, #0057b7 0 50%, #ffd700 50% 100%);
+  border: var(--hair) solid var(--line);
+}
+
+.ukraine-text { border-bottom: 1px solid rgba(21, 21, 21, 0.4); padding-bottom: 1px; }
+.ukraine:hover .ukraine-text { border-bottom-color: #0057b7; }
+
+/* ---- sections ---- */
+
+.section { padding: 34px 0 36px; border-bottom: var(--hair) solid var(--line); }
+
+.label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.section p + p { margin-top: 12px; }
+
+.stack { font-size: 13.5px; opacity: 0.85; }
+
+/* ---- lists ---- */
+
+ul { list-style: none; }
+
+.posts { margin-top: 12px; }
+.posts li { padding: 7px 0; }
+.posts li + li { border-top: var(--hair) solid rgba(21, 21, 21, 0.15); }
+
+.links li { padding: 4px 0; }
+
+/* ---- two columns split by a hairline ---- */
+
+.cols { display: flex; }
+
+.cols .col { flex: 1; border-bottom: var(--hair) solid var(--line); }
+
+.cols .col + .col {
+  border-left: var(--hair) solid var(--line);
+  padding-left: 36px;
+}
+
+.cols .col:first-child { padding-right: 36px; }
+
+/* ---- footer ---- */
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 30px 0 46px;
+}
+
+.crane { width: 30px; height: 30px; color: var(--ink); }
+.crane svg { display: block; width: 100%; height: 100%; }
+
+.footer-name {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.footer .chip-yellow { margin-left: auto; }
+
+/* ---- mobile: single column, chips stay tiny ---- */
+
+@media (max-width: 560px) {
+  .frame {
+    margin-left: 0;
+    padding: 0 20px 0 24px;
+  }
+
+  .masthead { padding: 48px 0 36px; }
+
+  h1 { font-size: 27px; }
+
+  .cols { display: block; }
+
+  .cols .col:first-child { padding-right: 0; }
+
+  .cols .col + .col {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+/* ---- dark variant ---- */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #141414;
+    --ink: #efede6;
+    --line: #efede6;
+  }
+
+  a { text-decoration-color: rgba(239, 237, 230, 0.4); }
+  a:hover { text-decoration-color: var(--red); }
+
+  .lang-active { border-bottom-color: var(--ink); }
+
+  .ukraine-text { border-bottom-color: rgba(239, 237, 230, 0.4); }
+  .ukraine:hover .ukraine-text { border-bottom-color: #ffd700; }
+
+  .posts li + li { border-top-color: rgba(239, 237, 230, 0.18); }
+}

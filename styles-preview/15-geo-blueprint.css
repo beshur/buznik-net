@@ -1,0 +1,320 @@
+/* 15 — Geo Blueprint: architect's sheet, graph paper, one cobalt pen */
+
+:root {
+  --paper: #fdfdfa;
+  --ink: #1c1c1c;
+  --muted: #55565a;
+  --pen: #2b50c8;
+  --grid: rgba(30, 60, 120, 0.07);
+  --cell: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #10131c;
+    --ink: #eceded;
+    --muted: #a3a8b4;
+    --pen: #7d97e8;
+    --grid: rgba(160, 180, 230, 0.08);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background-color: var(--paper);
+  background-image:
+    repeating-linear-gradient(0deg,  var(--grid) 0 1px, transparent 1px var(--cell)),
+    repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px var(--cell));
+  color: var(--ink);
+  font-family: Futura, 'Century Gothic', 'Avenir Next', 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sheet {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 76px 36px 40px;
+}
+
+/* registration crosses at sheet corners */
+.sheet::before,
+.sheet::after {
+  content: "";
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  background:
+    linear-gradient(var(--pen), var(--pen)) center / 1px 100% no-repeat,
+    linear-gradient(var(--pen), var(--pen)) center / 100% 1px no-repeat;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.sheet::before { top: 28px; left: -6px; }
+.sheet::after  { bottom: 28px; right: -6px; }
+
+/* ---- language switch ---- */
+
+.lang {
+  position: absolute;
+  top: 30px;
+  right: 36px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.lang .lang-active {
+  color: var(--pen);
+  border-bottom: 1px solid var(--pen);
+  padding-bottom: 1px;
+}
+.lang a {
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 18px;
+  padding-bottom: 1px;
+  border-bottom: 1px solid transparent;
+}
+.lang a:hover { color: var(--pen); border-bottom-color: var(--pen); }
+
+/* ---- header with construction marks ---- */
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  margin: 8px 0 56px;
+}
+
+.mark {
+  position: relative;
+  flex: 0 0 auto;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 26px; /* room for the dimension line */
+}
+
+.mark-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--pen);
+  border-radius: 50%;
+}
+/* center crosshair, extending past the circle as ticks */
+.mark-ring::before,
+.mark-ring::after {
+  content: "";
+  position: absolute;
+  background: var(--pen);
+  opacity: 0.55;
+}
+.mark-ring::before { top: 50%; left: -9px; right: -9px; height: 1px; }
+.mark-ring::after  { left: 50%; top: -9px; bottom: -9px; width: 1px; }
+
+/* short ticks at the diagonals */
+.mark-ticks {
+  position: absolute;
+  inset: -9px;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+.mark-ticks::before,
+.mark-ticks::after {
+  content: "";
+  position: absolute;
+  opacity: 0.55;
+}
+.mark-ticks::before {
+  top: 50%; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg,
+    var(--pen) 0 9px, transparent 9px calc(100% - 9px), var(--pen) calc(100% - 9px));
+}
+.mark-ticks::after {
+  left: 50%; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(180deg,
+    var(--pen) 0 9px, transparent 9px calc(100% - 9px), var(--pen) calc(100% - 9px));
+}
+
+.crane {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 46px;
+  height: 46px;
+  transform: translate(-50%, -50%);
+  color: var(--ink);
+}
+
+/* dimension line with outward arrowheads + label */
+.dim {
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  width: 64px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: var(--pen);
+}
+.dim::before,
+.dim::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  border: 3.5px solid transparent;
+}
+.dim::before { left: -1px;  border-left: 0;  border-right: 6px solid var(--pen); }
+.dim::after  { right: -1px; border-right: 0; border-left: 6px solid var(--pen); }
+.dim-label {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--pen);
+  white-space: nowrap;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.35rem;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  line-height: 1.15;
+}
+
+.tagline {
+  margin: 10px 0 0;
+  font-size: 1.02rem;
+  color: var(--muted);
+}
+
+/* ---- sections ---- */
+
+section { margin: 0 0 44px; }
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--pen);
+}
+.label::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--pen);
+}
+
+p { margin: 0 0 14px; max-width: 58ch; }
+
+.stack { color: var(--muted); font-size: 0.95rem; }
+.stack-key { color: var(--ink); font-weight: 500; }
+
+/* ---- links: thin blue underline ---- */
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--pen);
+  padding-bottom: 1px;
+  transition: color 0.15s ease;
+}
+a:hover { color: var(--pen); }
+
+/* ---- stand with ukraine ---- */
+
+.ukraine {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 46px;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+.flag {
+  width: 21px;
+  height: 14px;
+  flex: 0 0 auto;
+  background: linear-gradient(#0057b7 0 50%, #ffd700 50% 100%);
+  outline: 1px solid rgba(30, 60, 120, 0.25);
+  outline-offset: 1px;
+}
+
+/* ---- lists with small blue square bullets ---- */
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+.posts li,
+.links li { position: relative; padding-left: 20px; }
+
+.posts li { margin-bottom: 9px; }
+
+.posts li::before,
+.links li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  background: var(--pen);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 36px;
+}
+
+/* ---- title plate footer ---- */
+
+.plate {
+  display: flex;
+  gap: 28px;
+  margin-top: 64px;
+  padding-top: 14px;
+  border-top: 1px solid var(--pen);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--pen);
+}
+.plate span:last-child { margin-left: auto; }
+
+/* ---- small screens: annotations shrink or step aside ---- */
+
+@media (max-width: 480px) {
+  .sheet { padding: 68px 22px 32px; }
+  .sheet::before, .sheet::after { display: none; }
+  .lang { top: 26px; right: 22px; }
+
+  .head {
+    gap: 24px;
+    margin-bottom: 44px;
+  }
+  .mark { width: 68px; height: 68px; margin-bottom: 0; }
+  .mark-ticks { display: none; }
+  .mark-ring::before { left: -6px; right: -6px; }
+  .mark-ring::after  { top: -6px; bottom: -6px; }
+  .crane { width: 34px; height: 34px; }
+  .dim { display: none; }
+
+  h1 { font-size: 1.7rem; }
+  .tagline { font-size: 0.95rem; }
+
+  section { margin-bottom: 38px; }
+  .links { flex-direction: column; gap: 9px; }
+  .plate { gap: 16px; letter-spacing: 0.18em; }
+}
