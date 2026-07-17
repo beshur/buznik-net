@@ -15,3 +15,4 @@ sftp.json
 
 # Ignore kluster.ai Verify Code rules
 .cursor/rules/kluster-code-verify.mdc
+config_secrets.php
