@@ -68,7 +68,7 @@ a:hover {
 
 .circle,
 .circle-margin,
-.quarter {
+.ribbon {
   pointer-events: none;
   z-index: 0;
 }
@@ -134,33 +134,29 @@ a:hover {
   border-color: var(--line-strong);
 }
 
-/* filled quarter-circle, soft duotone, pinned bottom-left */
-.quarter {
+/* full-height ribbon on the left edge; a small block tracks the cursor */
+.ribbon {
   position: fixed;
   left: 0;
-  bottom: 0;
-  width: 200px;
-  height: 200px;
-}
-
-.quarter-sage,
-.quarter-terra {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  border-radius: 0 100% 0 0;
-}
-
-.quarter-sage {
-  width: 200px;
-  height: 200px;
+  top: 0;
+  width: 12px;
+  height: 100vh;
   background: var(--sage-wash);
 }
 
-.quarter-terra {
-  width: 116px;
-  height: 116px;
-  background: var(--terra-wash);
+.ribbon-cursor {
+  display: block;
+  width: 100%;
+  height: 44px;
+  background: var(--terra);
+  transition: transform 0.22s ease-out;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ribbon-cursor {
+    transition: none;
+  }
 }
 
 /* ---------- language switch ---------- */
@@ -412,19 +408,8 @@ section p + p {
     display: none;
   }
 
-  .quarter {
-    width: 110px;
-    height: 110px;
-  }
-
-  .quarter-sage {
-    width: 110px;
-    height: 110px;
-  }
-
-  .quarter-terra {
-    width: 62px;
-    height: 62px;
+  .ribbon {
+    display: none;
   }
 
   .lang {

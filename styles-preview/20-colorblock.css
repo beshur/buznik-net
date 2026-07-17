@@ -10,7 +10,7 @@
   --red:    #d63a2f;
   --flag-blue:   #0057b7;
   --flag-yellow: #ffd700;
-  --font: Futura, 'Century Gothic', 'Avenir Next', 'Trebuchet MS', sans-serif;
+  --font: 'Helvetica Neue', 'Avenir Next', Futura, 'Century Gothic', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,6 +19,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font);
+  font-weight: 300;
   background: var(--black);
   color: var(--paper);
   line-height: 1.55;
@@ -51,8 +52,8 @@ body {
 h1 {
   font-size: clamp(3.4rem, 12.5vw, 9.5rem);
   line-height: 0.92;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-weight: 200;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   margin: 0.4em 0 0.18em;
 }
@@ -60,8 +61,8 @@ h1 {
 h2 {
   font-size: clamp(2.6rem, 7.5vw, 5.5rem);
   line-height: 0.95;
-  font-weight: 800;
-  letter-spacing: -0.015em;
+  font-weight: 200;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   margin-bottom: 0.55em;
 }
@@ -76,7 +77,7 @@ a {
   text-decoration: underline;
   text-decoration-thickness: 0.14em;
   text-underline-offset: 0.18em;
-  font-weight: 700;
+  font-weight: 300;
 }
 
 a:hover, a:focus-visible {
@@ -96,7 +97,7 @@ a:hover, a:focus-visible {
 
 .band-hero .tagline {
   font-size: clamp(1.1rem, 2.4vw, 1.5rem);
-  font-weight: 700;
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -108,7 +109,7 @@ a:hover, a:focus-visible {
   display: flex;
   gap: 1.1rem;
   justify-content: flex-end;
-  font-weight: 800;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 0.95rem;
@@ -208,9 +209,9 @@ a:hover, a:focus-visible {
 .ukraine-text {
   font-size: clamp(2.2rem, 6.5vw, 4.8rem);
   line-height: 0.98;
-  font-weight: 800;
+  font-weight: 200;
   text-transform: uppercase;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
   text-decoration: underline;
   text-decoration-thickness: 0.12em;
   text-underline-offset: 0.14em;
@@ -266,7 +267,7 @@ a:hover, a:focus-visible {
 
 .posts li {
   font-size: clamp(1.1rem, 2.4vw, 1.55rem);
-  font-weight: 700;
+  font-weight: 300;
   padding: 0.75em 0;
   border-top: 3px solid var(--black);
 }
@@ -325,7 +326,7 @@ a:hover, a:focus-visible {
   flex-wrap: wrap;
   gap: 0.9em 2.2em;
   font-size: clamp(1.15rem, 2.6vw, 1.7rem);
-  font-weight: 700;
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }

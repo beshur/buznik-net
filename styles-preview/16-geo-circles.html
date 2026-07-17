@@ -13,9 +13,8 @@
   <div class="circle-margin" aria-hidden="true">
     <div class="ring ring-outer"><div class="ring ring-inner"></div></div>
   </div>
-  <div class="quarter" aria-hidden="true">
-    <span class="quarter-sage"></span>
-    <span class="quarter-terra"></span>
+  <div class="ribbon" aria-hidden="true">
+    <span class="ribbon-cursor"></span>
   </div>
 
   <nav class="lang" aria-label="Language">
@@ -81,5 +80,21 @@
   </footer>
 
 </div>
+<script>
+(function () {
+  var block = document.querySelector('.ribbon-cursor');
+  if (!block || window.matchMedia('(pointer: coarse)').matches) return;
+  var raf = null, y = window.innerHeight / 2;
+  function apply() {
+    block.style.transform = 'translateY(' + (y - block.offsetHeight / 2) + 'px)';
+    raf = null;
+  }
+  window.addEventListener('mousemove', function (e) {
+    y = e.clientY;
+    if (!raf) raf = requestAnimationFrame(apply);
+  });
+  apply();
+})();
+</script>
 </body>
 </html>
