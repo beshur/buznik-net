@@ -1,30 +1,28 @@
-/* 03 — Nordic calm */
+/* 03 — Nordic calm (rev 2: open layout, no cards, turquoise) */
 
 :root {
-  --bg: #f4f6f8;
-  --card: #ffffff;
-  --text: #1d2939;
-  --text-2: #667085;
-  --accent: #3b6ea5;
-  --accent-soft: rgba(59, 110, 165, 0.10);
-  --border: rgba(16, 24, 40, 0.06);
-  --shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
-  --pill-bg: #eef1f5;
+  --bg: #f4faf9;
+  --text: #1c3230;
+  --text-2: #5c7370;
+  --accent: #0e9488;
+  --accent-strong: #0b7f74;
+  --accent-soft: rgba(17, 168, 154, 0.12);
+  --divider: rgba(14, 148, 136, 0.22);
+  --pill-bg: rgba(92, 115, 112, 0.09);
   --ua-blue: #0057b7;
   --ua-yellow: #ffd700;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #10151c;
-    --card: #171e28;
-    --text: #e4e9f0;
-    --text-2: #8a94a6;
-    --accent: #7ba7d4;
-    --accent-soft: rgba(123, 167, 212, 0.12);
-    --border: rgba(255, 255, 255, 0.06);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-    --pill-bg: #202a37;
+    --bg: #0d1514;
+    --text: #dce9e7;
+    --text-2: #8fa8a4;
+    --accent: #3ecfbf;
+    --accent-strong: #66dcd0;
+    --accent-soft: rgba(62, 207, 191, 0.13);
+    --divider: rgba(62, 207, 191, 0.25);
+    --pill-bg: rgba(255, 255, 255, 0.07);
   }
 }
 
@@ -45,12 +43,12 @@ body {
 }
 
 .page {
-  max-width: 680px;
+  max-width: 640px;
   margin: 0 auto;
-  padding: 32px 20px 72px;
+  padding: 32px 20px 80px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 44px;
 }
 
 a {
@@ -59,52 +57,59 @@ a {
 }
 
 a:hover {
+  color: var(--accent-strong);
   text-decoration: underline;
 }
 
-/* Cards */
+/* Former cards — now open sections */
 
 .card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: var(--shadow);
-  padding: 28px 32px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 
 h2 {
   font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--text-2);
+  color: var(--accent);
   margin-bottom: 14px;
+}
+
+h2::before {
+  content: "";
+  display: block;
+  width: 28px;
+  border-top: 2px solid var(--accent);
+  margin-bottom: 10px;
 }
 
 /* Language switch */
 
 .lang {
   display: flex;
-  gap: 6px;
+  gap: 18px;
   justify-content: flex-end;
+  font-size: 0.875rem;
 }
 
 .lang-item {
-  padding: 5px 14px;
-  border-radius: 999px;
-  font-size: 0.875rem;
   color: var(--text-2);
 }
 
 .lang-item.is-active {
-  background: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-strong);
   font-weight: 600;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 1px;
 }
 
 a.lang-item:hover {
+  color: var(--accent);
   text-decoration: none;
-  background: var(--accent-soft);
 }
 
 /* Hero */
@@ -113,16 +118,12 @@ a.lang-item:hover {
   display: flex;
   gap: 28px;
   align-items: flex-start;
-  padding: 36px 32px;
 }
 
 .mark {
   flex: 0 0 auto;
-  width: 72px;
-  height: 72px;
-  padding: 14px;
-  border-radius: 18px;
-  background: var(--accent-soft);
+  width: 84px;
+  height: 84px;
   color: var(--accent);
 }
 
@@ -133,7 +134,7 @@ a.lang-item:hover {
 }
 
 h1 {
-  font-size: 1.875rem;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -161,26 +162,25 @@ h1 {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 16px 24px;
   color: var(--text);
+  border-left: 3px solid var(--ua-blue);
+  padding-left: 18px;
 }
 
 .ukraine:hover {
   text-decoration: none;
-  border-color: var(--ua-blue);
 }
 
 .ukraine-flag {
   flex: 0 0 auto;
   width: 44px;
   height: 30px;
-  border-radius: 6px;
+  border-radius: 5px;
   background: linear-gradient(
     to bottom,
     var(--ua-blue) 0 50%,
     var(--ua-yellow) 50% 100%
   );
-  box-shadow: var(--shadow);
 }
 
 .ukraine-text {
@@ -232,7 +232,7 @@ h1 {
 
 .pills-primary li {
   background: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-strong);
 }
 
 /* Blog */
@@ -245,7 +245,11 @@ h1 {
 }
 
 .post-list li {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--divider);
+}
+
+.post-list li:last-child {
+  border-bottom: 1px solid var(--divider);
 }
 
 .post-list a {
@@ -258,7 +262,7 @@ h1 {
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 32px;
 }
 
 .link-list {
@@ -272,24 +276,18 @@ h1 {
 
 @media (max-width: 560px) {
   .page {
-    padding: 20px 14px 56px;
-    gap: 14px;
-  }
-
-  .card {
-    padding: 22px 20px;
+    padding: 24px 16px 56px;
+    gap: 36px;
   }
 
   .hero {
     flex-direction: column;
     gap: 18px;
-    padding: 26px 20px;
   }
 
   .mark {
-    width: 60px;
-    height: 60px;
-    padding: 12px;
+    width: 64px;
+    height: 64px;
   }
 
   h1 {
@@ -298,6 +296,6 @@ h1 {
 
   .two-col {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 28px;
   }
 }

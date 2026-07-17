@@ -1,0 +1,22 @@
+/* 02d-burgundy — color variant of 02-editorial */
+@import url("02-editorial.css");
+
+:root {
+  --paper: #fbf5f2;
+  --ink: #302125;
+  --ink-soft: #675158;
+  --rule: #e3d2ce;
+  --accent: #8c2f3f;
+  --accent-hover: #6c1f2e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1c1214;
+    --ink: #f0e2e0;
+    --ink-soft: #b99fa3;
+    --rule: #402930;
+    --accent: #d9848f;
+    --accent-hover: #e6a3ac;
+  }
+}

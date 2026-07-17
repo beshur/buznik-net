@@ -1,0 +1,22 @@
+/* 02b-forest — color variant of 02-editorial */
+@import url("02-editorial.css");
+
+:root {
+  --paper: #f5f8f0;
+  --ink: #242b1e;
+  --ink-soft: #59614d;
+  --rule: #d3dcc4;
+  --accent: #3f6d2e;
+  --accent-hover: #2f5322;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14180f;
+    --ink: #e5ead9;
+    --ink-soft: #a8b195;
+    --rule: #333b26;
+    --accent: #94c26e;
+    --accent-hover: #aed489;
+  }
+}

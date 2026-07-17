@@ -1,0 +1,22 @@
+/* 02e-teal — color variant of 02-editorial */
+@import url("02-editorial.css");
+
+:root {
+  --paper: #f2f7f6;
+  --ink: #1e2c2b;
+  --ink-soft: #4f6360;
+  --rule: #cddedb;
+  --accent: #1f6f68;
+  --accent-hover: #14524d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #101817;
+    --ink: #dcebe8;
+    --ink-soft: #93aca7;
+    --rule: #2a3b38;
+    --accent: #6cc4ba;
+    --accent-hover: #8ad6cd;
+  }
+}
