@@ -1,0 +1,298 @@
+/* 02 — Warm editorial serif
+   A literary-magazine profile: warm paper, hairline rules,
+   terracotta links, small-caps sans labels. */
+
+:root {
+  --paper: #faf6ef;
+  --ink: #2b2620;
+  --ink-soft: #5c5347;
+  --rule: #d8d0c2;
+  --accent: #b4552d;
+  --accent-hover: #8f3f1e;
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --ua-blue: #0057b7;
+  --ua-yellow: #ffd700;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #191512;
+    --ink: #ece4d6;
+    --ink-soft: #b0a595;
+    --rule: #3a332b;
+    --accent: #d9855c;
+    --accent-hover: #e9a281;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+
+/* — Language switch — */
+
+.lang {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.18em;
+  text-align: center;
+  color: var(--ink-soft);
+  margin-bottom: 2.5rem;
+}
+
+.lang-active {
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 1px;
+}
+
+.lang-sep {
+  margin: 0 0.6em;
+  color: var(--rule);
+}
+
+.lang a {
+  border-bottom-color: transparent;
+}
+
+.lang a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* — Masthead — */
+
+.masthead {
+  text-align: center;
+}
+
+.mark {
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.mark svg {
+  width: 52px;
+  height: 52px;
+  display: inline-block;
+}
+
+h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 7vw, 3rem);
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+.tagline {
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  margin-top: 0.6rem;
+}
+
+.tagline a {
+  color: inherit;
+  border-bottom: 1px solid var(--rule);
+}
+
+.tagline a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* — Rules — */
+
+.rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.5rem auto;
+  width: 100%;
+}
+
+/* — Bio — */
+
+.bio .lede::first-letter {
+  float: left;
+  font-size: 3.4em;
+  line-height: 0.82;
+  padding: 0.06em 0.12em 0 0;
+  color: var(--accent);
+}
+
+.stack {
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* — Stand with Ukraine — */
+
+.ukraine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 2.5rem auto 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  color: var(--ink);
+  font-style: italic;
+  font-size: 1.02rem;
+  max-width: 22rem;
+}
+
+.ukraine:hover,
+.ukraine:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.flag {
+  flex: none;
+  width: 34px;
+  height: 22px;
+  border-radius: 1px;
+  background: linear-gradient(to bottom, var(--ua-blue) 0 50%, var(--ua-yellow) 50% 100%);
+  box-shadow: 0 0 0 1px var(--rule);
+}
+
+/* — Sections — */
+
+.section {
+  margin-top: 3rem;
+}
+
+.label {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.72rem;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.28em;
+  color: var(--ink-soft);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.label::before,
+.label::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--rule);
+}
+
+.section > p {
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.posts {
+  list-style: none;
+  text-align: center;
+}
+
+.posts li {
+  padding: 0.45rem 0;
+}
+
+.posts li + li {
+  border-top: 1px solid var(--rule);
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.9rem;
+  row-gap: 0.35rem;
+}
+
+.links li {
+  display: flex;
+  align-items: baseline;
+}
+
+.links li + li::before {
+  content: "·";
+  color: var(--rule);
+  margin-right: 0.9rem;
+}
+
+/* — Footer — */
+
+.footer .rule {
+  margin-bottom: 1.5rem;
+}
+
+.colophon {
+  text-align: center;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* — Small screens — */
+
+@media (max-width: 480px) {
+  body {
+    font-size: 17px;
+  }
+
+  .page {
+    padding: 2.25rem 1.25rem 3rem;
+  }
+
+  .links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .links li + li::before {
+    content: none;
+  }
+}

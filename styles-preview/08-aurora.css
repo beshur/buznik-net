@@ -1,0 +1,296 @@
+/* 08 — Aurora glassmorphism */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --ink: #2e2a45;
+  --ink-soft: #57517a;
+  --link: #6d5ae6;
+  --link-hover: #4f3bd6;
+  --glass: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --radius: 20px;
+  --shadow: 0 10px 40px rgba(90, 70, 160, 0.14), 0 2px 8px rgba(90, 70, 160, 0.08);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: #f4f2fb;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ---------- Aurora background blobs ---------- */
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  width: 55vmax;
+  height: 55vmax;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.blob-violet {
+  background: radial-gradient(circle at center, #c9b8ff 0%, rgba(201, 184, 255, 0) 70%);
+  top: -18vmax;
+  left: -12vmax;
+  animation: drift-a 38s ease-in-out infinite alternate;
+}
+
+.blob-pink {
+  background: radial-gradient(circle at center, #ffc4e1 0%, rgba(255, 196, 225, 0) 70%);
+  top: -8vmax;
+  right: -18vmax;
+  animation: drift-b 46s ease-in-out infinite alternate;
+}
+
+.blob-cyan {
+  background: radial-gradient(circle at center, #b5ecf5 0%, rgba(181, 236, 245, 0) 70%);
+  bottom: -20vmax;
+  left: -8vmax;
+  animation: drift-c 42s ease-in-out infinite alternate;
+}
+
+.blob-peach {
+  background: radial-gradient(circle at center, #ffdcc2 0%, rgba(255, 220, 194, 0) 70%);
+  bottom: -14vmax;
+  right: -10vmax;
+  animation: drift-a 52s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes drift-a {
+  from { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(6vmax, 4vmax) scale(1.08); }
+  to   { transform: translate(-4vmax, 7vmax) scale(0.96); }
+}
+
+@keyframes drift-b {
+  from { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-7vmax, 5vmax) scale(1.05); }
+  to   { transform: translate(3vmax, -5vmax) scale(1.1); }
+}
+
+@keyframes drift-c {
+  from { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(5vmax, -6vmax) scale(1.06); }
+  to   { transform: translate(-6vmax, 3vmax) scale(0.94); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob {
+    animation: none;
+  }
+}
+
+/* ---------- Layout ---------- */
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+}
+
+.card {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+  margin-bottom: 22px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.two-col .card {
+  margin-bottom: 0;
+}
+
+/* ---------- Language switch ---------- */
+
+.lang {
+  display: inline-flex;
+  gap: 14px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  margin-bottom: 22px;
+}
+
+.lang-active {
+  font-weight: 700;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 36px;
+}
+
+.mark {
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  color: var(--link);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  box-shadow: 0 6px 24px rgba(109, 90, 230, 0.18);
+}
+
+.mark svg {
+  width: 54px;
+  height: 54px;
+  display: block;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.tagline {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+/* ---------- Stand with Ukraine ---------- */
+
+.ukraine {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--glass-border);
+  color: #0057b7;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0, 87, 183, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ukraine:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 87, 183, 0.25);
+}
+
+.flag {
+  width: 26px;
+  height: 18px;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #0057b7 0%, #0057b7 50%, #ffd700 50%, #ffd700 100%);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+  flex: none;
+}
+
+/* ---------- Typography & links ---------- */
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+p + p {
+  margin-top: 12px;
+}
+
+a {
+  color: var(--link);
+  text-decoration-color: rgba(109, 90, 230, 0.35);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration-color: currentColor;
+}
+
+.stack strong {
+  color: var(--ink);
+}
+
+/* ---------- Lists ---------- */
+
+.posts,
+.links {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.posts li,
+.links li {
+  padding: 7px 0;
+}
+
+.posts li + li,
+.links li + li {
+  border-top: 1px solid rgba(109, 90, 230, 0.12);
+}
+
+/* ---------- Fallback when backdrop-filter unsupported ---------- */
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .card {
+    background: rgba(255, 255, 255, 0.85);
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 560px) {
+  .page {
+    padding: 18px 14px 48px;
+  }
+
+  .card {
+    padding: 22px 20px;
+  }
+
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .two-col .card + .card {
+    margin-top: 0;
+  }
+}

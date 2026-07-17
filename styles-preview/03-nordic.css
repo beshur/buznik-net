@@ -1,0 +1,303 @@
+/* 03 — Nordic calm */
+
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #1d2939;
+  --text-2: #667085;
+  --accent: #3b6ea5;
+  --accent-soft: rgba(59, 110, 165, 0.10);
+  --border: rgba(16, 24, 40, 0.06);
+  --shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+  --pill-bg: #eef1f5;
+  --ua-blue: #0057b7;
+  --ua-yellow: #ffd700;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #10151c;
+    --card: #171e28;
+    --text: #e4e9f0;
+    --text-2: #8a94a6;
+    --accent: #7ba7d4;
+    --accent-soft: rgba(123, 167, 212, 0.12);
+    --border: rgba(255, 255, 255, 0.06);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    --pill-bg: #202a37;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px 20px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Cards */
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+}
+
+h2 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 14px;
+}
+
+/* Language switch */
+
+.lang {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.lang-item {
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  color: var(--text-2);
+}
+
+.lang-item.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+a.lang-item:hover {
+  text-decoration: none;
+  background: var(--accent-soft);
+}
+
+/* Hero */
+
+.hero {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  padding: 36px 32px;
+}
+
+.mark {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+  padding: 14px;
+  border-radius: 18px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.tagline {
+  margin-top: 4px;
+  font-size: 1.0625rem;
+  color: var(--text-2);
+}
+
+.tagline a {
+  font-weight: 500;
+}
+
+.bio {
+  margin-top: 16px;
+  color: var(--text-2);
+  max-width: 52ch;
+}
+
+/* Stand with Ukraine */
+
+.ukraine {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  color: var(--text);
+}
+
+.ukraine:hover {
+  text-decoration: none;
+  border-color: var(--ua-blue);
+}
+
+.ukraine-flag {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 30px;
+  border-radius: 6px;
+  background: linear-gradient(
+    to bottom,
+    var(--ua-blue) 0 50%,
+    var(--ua-yellow) 50% 100%
+  );
+  box-shadow: var(--shadow);
+}
+
+.ukraine-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.ukraine-text strong {
+  font-weight: 600;
+}
+
+.ukraine-text span {
+  font-size: 0.8125rem;
+  color: var(--text-2);
+}
+
+.ukraine:hover .ukraine-text strong {
+  color: var(--accent);
+}
+
+/* Stack pills */
+
+.stack-label {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  margin-bottom: 10px;
+}
+
+.pills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pills + .stack-label {
+  margin-top: 20px;
+}
+
+.pills li {
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background: var(--pill-bg);
+  color: var(--text-2);
+}
+
+.pills-primary li {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Blog */
+
+.post-list {
+  list-style: none;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-list li {
+  border-top: 1px solid var(--border);
+}
+
+.post-list a {
+  display: block;
+  padding: 11px 0;
+}
+
+/* Link lists */
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.link-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Responsive */
+
+@media (max-width: 560px) {
+  .page {
+    padding: 20px 14px 56px;
+    gap: 14px;
+  }
+
+  .card {
+    padding: 22px 20px;
+  }
+
+  .hero {
+    flex-direction: column;
+    gap: 18px;
+    padding: 26px 20px;
+  }
+
+  .mark {
+    width: 60px;
+    height: 60px;
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}

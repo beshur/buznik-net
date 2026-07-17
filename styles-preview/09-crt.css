@@ -1,0 +1,301 @@
+/* 09 — Retro CRT terminal — buznik.net style prototype */
+
+:root {
+  --bg: #020703;
+  --green: #33ff66;
+  --green-dim: #1f9e46;
+  --glow: 0 0 6px rgba(51, 255, 102, 0.45);
+  --glow-strong: 0 0 10px rgba(51, 255, 102, 0.6);
+  --ua-blue: #0057b7;
+  --ua-yellow: #ffd700;
+  --mono: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono",
+    "Segoe UI Mono", Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  text-shadow: var(--glow);
+}
+
+/* CRT overlays: scanlines + vignette */
+.crt {
+  position: relative;
+  min-height: 100vh;
+}
+
+.crt::before {
+  /* scanlines */
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(2, 12, 5, 0.28) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+}
+
+.crt::after {
+  /* vignette */
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 11;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+}
+
+.screen {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 3rem;
+}
+
+/* ---- prompt lines ---- */
+
+.prompt,
+.prompt-path {
+  color: var(--green-dim);
+  text-shadow: none;
+}
+
+.prompt {
+  margin: 2rem 0 0.75rem;
+  word-break: break-word;
+}
+
+/* ---- language switch ---- */
+
+.lang {
+  color: var(--green-dim);
+  margin-bottom: 0.5rem;
+}
+
+.lang-opts {
+  color: var(--green);
+}
+
+.lang-active {
+  font-weight: 700;
+  text-shadow: var(--glow-strong);
+}
+
+/* ---- headings ---- */
+
+.hero h1 {
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: var(--glow-strong);
+  margin: 0.25rem 0 0.25rem;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 0.15em;
+  animation: blink 1.1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+}
+
+.tagline {
+  color: var(--green-dim);
+  font-size: 1.05rem;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  text-shadow: var(--glow-strong);
+}
+
+section {
+  margin: 1.5rem 0;
+}
+
+section p + p {
+  margin-top: 0.75rem;
+}
+
+.stack,
+.dim {
+  color: var(--green-dim);
+}
+
+/* ---- dividers ---- */
+
+.divider {
+  color: var(--green-dim);
+  text-shadow: none;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ---- links ---- */
+
+a {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--green-dim);
+}
+
+a:hover,
+a:focus-visible {
+  background: var(--green);
+  color: var(--bg);
+  text-shadow: none;
+  text-decoration: none;
+  outline: none;
+}
+
+a:hover .idx,
+a:hover .dim,
+a:focus-visible .idx,
+a:focus-visible .dim {
+  color: var(--bg);
+  text-shadow: none;
+}
+
+/* ---- terminal entry lists ---- */
+
+.term-list {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+.term-list li {
+  margin: 0.35rem 0;
+}
+
+.term-list a {
+  display: inline-block;
+  padding: 0.1rem 0.35rem;
+  margin-left: -0.35rem;
+  text-decoration: none;
+}
+
+.idx {
+  color: var(--green-dim);
+  margin-right: 0.35rem;
+}
+
+/* ---- Stand with Ukraine ---- */
+
+.ukraine {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--green-dim);
+  text-decoration: none;
+}
+
+.ukraine-flag {
+  display: block;
+  width: 2.4rem;
+  height: 1.5rem;
+  flex: none;
+  outline: 1px solid rgba(51, 255, 102, 0.3);
+}
+
+.ukraine-flag span {
+  display: block;
+  height: 50%;
+}
+
+.ukraine-flag span:first-child {
+  background: var(--ua-blue);
+}
+
+.ukraine-flag span:last-child {
+  background: var(--ua-yellow);
+}
+
+.ukraine:hover .ukraine-flag,
+.ukraine:focus-visible .ukraine-flag {
+  outline-color: var(--bg);
+}
+
+.ukraine:hover .ukraine-flag span:first-child,
+.ukraine:focus-visible .ukraine-flag span:first-child {
+  background: var(--ua-blue);
+}
+
+.ukraine:hover .ukraine-flag span:last-child,
+.ukraine:focus-visible .ukraine-flag span:last-child {
+  background: var(--ua-yellow);
+}
+
+/* ---- footer mark ---- */
+
+.mark {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.crane {
+  width: 64px;
+  height: 64px;
+  color: var(--green);
+  filter: drop-shadow(0 0 5px rgba(51, 255, 102, 0.5));
+}
+
+.mark .prompt {
+  text-align: left;
+  margin-top: 1.5rem;
+}
+
+/* ---- small screens ---- */
+
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+
+  .screen {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .divider {
+    letter-spacing: -1px;
+  }
+}

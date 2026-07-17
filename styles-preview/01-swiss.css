@@ -1,0 +1,269 @@
+/* 01 — Swiss / International Typographic
+   Off-white, near-black, one red accent. Modular grid, hairline rules. */
+
+:root {
+  --bg: #f7f7f4;
+  --ink: #111110;
+  --ink-soft: #444442;
+  --rule: #d8d8d2;
+  --red: #e63329;
+  --ua-blue: #0057b7;
+  --ua-yellow: #ffd700;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121211;
+    --ink: #f4f4ef;
+    --ink-soft: #b8b8b0;
+    --rule: #333330;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  font-feature-settings: "kern";
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 32px 64px;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  transition: color .12s ease, border-color .12s ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--red);
+  border-bottom-color: var(--red);
+  outline: none;
+}
+
+::selection {
+  background: var(--red);
+  color: var(--bg);
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 24px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.mark {
+  width: 44px;
+  height: 44px;
+  color: var(--ink);
+}
+
+.mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lang {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.lang a,
+.lang .lang-active {
+  margin-left: 16px;
+}
+
+.lang .lang-active {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.lang a {
+  border-bottom-color: var(--rule);
+  color: var(--ink-soft);
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  padding: 64px 0 56px;
+  border-bottom: 1px solid var(--rule);
+}
+
+h1 {
+  font-size: clamp(44px, 8.5vw, 72px);
+  line-height: 0.98;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  max-width: 12ch;
+}
+
+.tagline {
+  margin-top: 20px;
+  font-size: clamp(18px, 2.4vw, 22px);
+  letter-spacing: -0.01em;
+  color: var(--ink-soft);
+}
+
+.tagline::before {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  background: var(--red);
+  margin-bottom: 18px;
+}
+
+/* ---------- modular sections ---------- */
+
+.section {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px 48px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+  padding-top: 4px;
+}
+
+.section-body {
+  max-width: 58ch;
+}
+
+.section-body p + p {
+  margin-top: 10px;
+}
+
+.bio {
+  font-size: 19px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Stand with Ukraine ---------- */
+
+.uastripe {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  border-bottom: none;
+}
+
+.uastripe-flag {
+  display: block;
+  width: 42px;
+  height: 28px;
+  background: linear-gradient(to bottom, var(--ua-blue) 0 50%, var(--ua-yellow) 50% 100%);
+  flex: none;
+}
+
+.uastripe-text {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  border-bottom: 1px solid var(--ink);
+  transition: color .12s ease, border-color .12s ease;
+}
+
+.uastripe:hover .uastripe-text,
+.uastripe:focus-visible .uastripe-text {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+
+/* ---------- lists ---------- */
+
+.postlist,
+.linklist {
+  list-style: none;
+  margin-top: 14px;
+}
+
+.postlist li,
+.linklist li {
+  border-top: 1px solid var(--rule);
+  padding: 10px 0;
+}
+
+.postlist li:last-child,
+.linklist li:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.postlist a,
+.linklist a {
+  border-bottom: none;
+  display: inline-block;
+}
+
+.postlist a::before,
+.linklist a::before {
+  content: "\2192\2002"; /* → */
+  color: var(--red);
+  font-weight: 400;
+}
+
+/* ---------- colophon ---------- */
+
+.colophon {
+  padding-top: 28px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 640px) {
+  .page {
+    padding: 24px 20px 48px;
+  }
+
+  .hero {
+    padding: 44px 0 40px;
+  }
+
+  .section {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 28px 0;
+  }
+
+  .bio {
+    font-size: 17px;
+  }
+}
