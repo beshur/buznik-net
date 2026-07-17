@@ -1,5 +1,9 @@
 <?php
 
+// repo/deploy root — anchor for all includes and generated files
+define("B_ROOT", __DIR__);
+date_default_timezone_set('EET');
+
 // page whose own content is the source text, per language
 define("B_PAGE_IDS", ["eng" => 2562, "ukr" => 2760]);
 // legacy single-page id (WP-side save hook still references it)
