@@ -1,0 +1,293 @@
+/* 11 — Classic Bauhaus poster
+   1923 exhibition-poster spirit: primary geometry on warm off-white. */
+
+:root {
+  --paper: #f3efe4;
+  --ink: #111111;
+  --red: #d63a2f;
+  --yellow: #eab41c;
+  --blue: #2b5aa7;
+  --ua-blue: #0057b7;
+  --ua-yellow: #ffd700;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { color-scheme: light only; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Futura, 'Century Gothic', 'Avenir Next', 'Trebuchet MS', sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.stage {
+  position: relative;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 48px 56px 64px;
+  min-height: 100vh;
+  overflow: hidden; /* clip shapes to poster edges */
+}
+
+/* ---------- Poster geometry (behind text) ---------- */
+
+.shape { position: absolute; z-index: 0; pointer-events: none; }
+
+/* Big red circle, clipped by top-right edge */
+.shape-circle {
+  width: 460px; height: 460px;
+  border-radius: 50%;
+  background: var(--red);
+  top: -140px; right: -150px;
+}
+
+/* Yellow triangle pointing up, low left, tucked behind footer zone */
+.shape-triangle {
+  bottom: -40px; left: -80px;
+  width: 0; height: 0;
+  border-left: 220px solid transparent;
+  border-right: 220px solid transparent;
+  border-bottom: 380px solid var(--yellow);
+}
+
+/* Blue semicircle on the right, mid-page, flat side to the edge */
+.shape-semicircle {
+  width: 150px; height: 300px;
+  background: var(--blue);
+  border-radius: 300px 0 0 300px;
+  top: 46%; right: 0;
+}
+
+/* Three thin black bars echoing the letterpress rules */
+.shape-bars { top: 132px; right: 64px; width: 190px; }
+.shape-bars i {
+  display: block;
+  height: 8px;
+  background: var(--ink);
+  margin-bottom: 14px;
+}
+.shape-bars i:nth-child(2) { width: 70%; }
+.shape-bars i:nth-child(3) { width: 40%; }
+
+/* ---------- Content sits above the shapes ---------- */
+
+.masthead, main, .foot { position: relative; z-index: 1; }
+
+/* Language switch */
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.lang-active {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 4px 12px;
+}
+.lang-sep { width: 26px; height: 4px; background: var(--ink); }
+.lang-link {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 4px solid var(--red);
+  padding-bottom: 1px;
+}
+.lang-link:hover { border-bottom-color: var(--blue); color: var(--blue); }
+
+/* Origami crane mark */
+.mark {
+  margin-top: 42px;
+  width: 76px;
+  color: var(--red);
+}
+.mark svg { display: block; width: 100%; height: auto; }
+
+h1 {
+  margin-top: 18px;
+  font-size: clamp(64px, 11vw, 128px);
+  font-weight: 800;
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  max-width: 8ch;
+}
+
+/* Thick black structural bar */
+.rule {
+  margin-top: 30px;
+  width: min(560px, 72%);
+  height: 18px;
+  background: var(--ink);
+}
+
+.tagline {
+  margin-top: 22px;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  max-width: 22ch;
+}
+
+/* ---------- Links ---------- */
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 4px;
+  text-underline-offset: 4px;
+}
+a:hover {
+  color: var(--blue);
+  text-decoration-color: var(--blue);
+}
+
+/* ---------- Sections ---------- */
+
+main { margin-top: 76px; }
+
+.sec { margin-bottom: 60px; }
+
+.sec h2 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 19px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  margin-bottom: 22px;
+}
+.secnum {
+  flex: 0 0 auto;
+  width: 40px; height: 40px;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+
+.sec p { max-width: 56ch; }
+.sec p + p { margin-top: 16px; }
+
+.stack strong { text-transform: uppercase; letter-spacing: 0.06em; font-size: 15px; }
+
+/* Asymmetric offsets — poster grid */
+.sec-about { max-width: 620px; }
+.sec-blog  { margin-left: clamp(0px, 12%, 130px); max-width: 640px; }
+
+.twocol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 640px;
+}
+
+/* ---------- Stand with Ukraine (pure CSS) ---------- */
+
+.ukraine {
+  display: inline-flex;
+  align-items: stretch;
+  margin-top: 30px;
+  text-decoration: none;
+  border: 4px solid var(--ink);
+  background: var(--paper);
+}
+.ukraine-flag {
+  display: flex;
+  flex-direction: column;
+  width: 58px;
+  flex: 0 0 auto;
+}
+.ukraine-flag i { display: block; flex: 1; }
+.ukraine-flag i:first-child { background: var(--ua-blue); }
+.ukraine-flag i:last-child  { background: var(--ua-yellow); }
+.ukraine-text {
+  padding: 12px 20px;
+  font-weight: 800;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  border-left: 4px solid var(--ink);
+}
+.ukraine:hover .ukraine-text { background: var(--ink); color: var(--paper); }
+
+/* ---------- Lists ---------- */
+
+.postlist, .linklist { list-style: none; margin-top: 18px; }
+.postlist li, .linklist li { margin-bottom: 14px; padding-left: 26px; position: relative; }
+.postlist li::before, .linklist li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.42em;
+  width: 12px; height: 12px;
+  background: var(--red);
+}
+.linklist li:nth-child(even)::before { background: var(--blue); }
+.postlist li:nth-child(2)::before { background: var(--yellow); }
+.postlist li:nth-child(3)::before { background: var(--blue); }
+
+/* ---------- Footer ---------- */
+
+.foot {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 14px;
+}
+.foot-square { width: 14px; height: 14px; background: var(--ink); }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 760px) {
+  .stage { padding: 32px 24px 48px; }
+
+  .shape-circle { width: 300px; height: 300px; top: -120px; right: -130px; }
+  .shape-bars { top: 96px; right: 24px; width: 120px; }
+  .shape-bars i { height: 6px; margin-bottom: 10px; }
+  .shape-semicircle { width: 80px; height: 160px; border-radius: 160px 0 0 160px; }
+
+  .tagline { font-size: 20px; }
+  main { margin-top: 56px; }
+  .sec-blog { margin-left: 0; }
+  .twocol { grid-template-columns: 1fr; gap: 0; }
+}
+
+@media (max-width: 460px) {
+  body { font-size: 16px; }
+  .stage { padding: 28px 18px 40px; }
+
+  /* shapes shrink and hug the edges, never under text */
+  .shape-circle { width: 210px; height: 210px; top: -110px; right: -110px; }
+  .shape-bars { display: none; }
+  .shape-semicircle { width: 48px; height: 96px; border-radius: 96px 0 0 96px; top: 40%; }
+  .shape-triangle {
+    border-left-width: 120px;
+    border-right-width: 120px;
+    border-bottom-width: 200px;
+    bottom: -30px; left: -70px;
+  }
+
+  h1 { font-size: 56px; }
+  .rule { height: 12px; width: 78%; }
+  .tagline { font-size: 18px; }
+  .mark { width: 58px; margin-top: 34px; }
+  .sec { margin-bottom: 46px; }
+  .sec h2 { letter-spacing: 0.2em; }
+  .ukraine-flag { width: 46px; }
+  .ukraine-text { padding: 10px 14px; font-size: 14px; }
+}

@@ -1,0 +1,357 @@
+/* 14 — Geometric line minimal (Bauhaus grammar, maximum laconic) */
+
+:root {
+  --paper: #fefdfb;
+  --ink: #191919;
+  --ink-soft: #55534f;
+  --hairline: rgba(25, 25, 25, 0.22);
+  --accent: #e8442e;
+  --ua-blue: #0057b7;
+  --ua-yellow: #ffd700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Futura, 'Century Gothic', 'Avenir Next', 'Trebuchet MS', sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- geometry (thin outlines, one accent) ---------- */
+
+.geo {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.geo-square {
+  top: 96px;
+  right: clamp(2rem, 9vw, 9rem);
+  width: 148px;
+  height: 148px;
+  border: 2px solid var(--ink);
+}
+
+.geo-circle {
+  top: 168px;
+  right: clamp(5.5rem, 9vw + 3.5rem, 12.5rem);
+  width: 148px;
+  height: 148px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+
+.geo-diagonal {
+  top: 300px;
+  right: clamp(0.5rem, 7vw, 7rem);
+  width: 260px;
+  height: 2px;
+  background: var(--ink);
+  transform: rotate(-45deg);
+  transform-origin: right center;
+}
+
+.geo-dot {
+  top: 154px;
+  right: clamp(2rem, 9vw, 9rem);
+  width: 14px;
+  height: 14px;
+  margin-right: 67px;
+  margin-top: 60px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ---------- language switch ---------- */
+
+.lang {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 2.2rem 0 0 clamp(1.5rem, 17vw, 16rem);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.lang-active {
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 2px;
+}
+
+.lang-sep {
+  width: 1px;
+  height: 0.9rem;
+  background: var(--hairline);
+}
+
+.lang a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+}
+
+.lang a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- page column (asymmetric: generous left margin) ---------- */
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 33rem;
+  margin-left: clamp(1.5rem, 17vw, 16rem);
+  padding: 3.5rem 1.5rem 4.5rem 0;
+}
+
+/* ---------- type ---------- */
+
+.masthead {
+  margin-bottom: 4.5rem;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6.5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.1rem;
+}
+
+.tagline {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+}
+
+.label {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 1.1rem;
+}
+
+.section {
+  border-top: 1px solid var(--hairline);
+  padding-top: 1.4rem;
+  margin-bottom: 3rem;
+}
+
+.section p + p {
+  margin-top: 0.7rem;
+}
+
+/* ---------- links: vermilion underlines ---------- */
+
+.page a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+
+.page a:hover {
+  color: var(--accent);
+}
+
+/* ---------- lists: small filled dots as bullets ---------- */
+
+.dots {
+  list-style: none;
+  margin-top: 0.9rem;
+}
+
+.dots li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.55rem;
+}
+
+.dots li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+/* ---------- stand with Ukraine (pure CSS) ---------- */
+
+.section:has(.ukraine) {
+  border-top: none;
+  padding-top: 0;
+}
+
+.ukraine {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  text-decoration: none !important;
+  border: 1px solid var(--hairline);
+  padding: 0.7rem 1.1rem;
+}
+
+.ukraine-flag {
+  display: block;
+  width: 30px;
+  height: 20px;
+}
+
+.ukraine-flag i {
+  display: block;
+  width: 100%;
+  height: 50%;
+}
+
+.ukraine-flag i:first-child {
+  background: var(--ua-blue);
+}
+
+.ukraine-flag i:last-child {
+  background: var(--ua-yellow);
+}
+
+.ukraine-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.ukraine:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* ---------- footer / crane ---------- */
+
+.footer {
+  border-top: 1px solid var(--hairline);
+  padding-top: 1.6rem;
+}
+
+.crane {
+  display: inline-block;
+  width: 44px;
+  color: var(--ink);
+}
+
+.crane svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- dark scheme ---------- */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #121212;
+    --ink: #eceae6;
+    --ink-soft: #a3a09a;
+    --hairline: rgba(236, 234, 230, 0.22);
+  }
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .geo-square {
+    top: 76px;
+    width: 104px;
+    height: 104px;
+  }
+
+  .geo-circle {
+    top: 126px;
+    right: clamp(4rem, 9vw + 2.5rem, 12.5rem);
+    width: 104px;
+    height: 104px;
+  }
+
+  .geo-diagonal {
+    top: 216px;
+    width: 170px;
+  }
+
+  .geo-dot {
+    top: 116px;
+    width: 11px;
+    height: 11px;
+    margin-right: 46px;
+    margin-top: 42px;
+  }
+}
+
+@media (max-width: 640px) {
+  .geo-diagonal {
+    display: none;
+  }
+
+  .geo-square {
+    top: 24px;
+    right: 1.4rem;
+    width: 64px;
+    height: 64px;
+  }
+
+  .geo-circle {
+    top: 55px;
+    right: 3.5rem;
+    width: 64px;
+    height: 64px;
+  }
+
+  .geo-dot {
+    top: 48px;
+    right: 1.4rem;
+    margin-right: 28px;
+    margin-top: 26px;
+    width: 9px;
+    height: 9px;
+  }
+
+  .lang {
+    padding-left: 1.4rem;
+    padding-top: 1.6rem;
+  }
+
+  .page {
+    margin-left: 1.4rem;
+    padding-right: 1.4rem;
+    padding-top: 5.5rem;
+  }
+
+  .masthead {
+    margin-bottom: 3rem;
+  }
+
+  .section {
+    margin-bottom: 2.2rem;
+  }
+}
