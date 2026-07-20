@@ -146,6 +146,7 @@ section.resume header .pic .shu .face {
   position: absolute;
   top: 0;
   left: 0;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   display: block;
   width: 100%;

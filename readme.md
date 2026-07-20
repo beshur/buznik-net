@@ -34,10 +34,16 @@ Deploy flow: push to master → GitHub Action builds `dist/` and publishes
 
 ## Building and development
 
-Deploying via Grunt requires correct env variables (see `deploy-config-sample.sh`).
+Tooling is [bun](https://bun.sh) (`brew install oven-sh/bun/bun`); the only
+dependency is `sharp` for image compression.
 
-- `yarn --force`, well, to install dependencies
-- `yarn build` to build assets and static html files, to test staff locally
-- `yarn deploy` to build assets (includes `build` job) and to deploy them to remote
-- `yarn start` to start watcher for development. #TODO: fix getting texts
+- `bun install` to install dependencies
+- `bun run build` to build `dist/` (copy php/assets, minify css, compress images)
+- `bun run start` to watch sources, rebuild `dist/` and re-render the html on change
 - `php build.php` to just regenerate the html files
+
+Deploys happen exclusively via push to master: the GitHub Action builds
+`dist/`, publishes `dist.zip` as a release and pings the server webhook.
+The build script is `scripts/build.ts`; note css minification is a small
+in-script pass because `css/main.css` uses runtime web paths in `url()`
+that bundlers would try to resolve at build time.
