@@ -11,6 +11,9 @@ eng.html
 *.log
 deploy-config.sh
 sftp.json
+dist.zip
+config_secrets.php
+
 
 
 # Ignore kluster.ai Verify Code rules
