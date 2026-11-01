@@ -37,7 +37,7 @@ if (!is_file($text_file)) {
           <li><a href="https://github.com/beshur">github.com/beshur</a></li>
           <li><a href="https://linkedin.com/in/alexbuznik">LinkedIn</a></li>
           <li><a href="/cv.pdf"><?= e(t('cv', $lang)) ?></a></li>
-          <li><a href="cases.html"><?= e(t('cases', $lang)) ?></a></li>
+          <li><a href="<?= e(page_href('cases', $lang)) ?>"><?= e(cases_label($lang)) ?></a></li>
         </ul>
         <div><?= e(t('connect', $lang)) ?>:</div>
         <ul class="list">

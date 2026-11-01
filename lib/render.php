@@ -38,6 +38,20 @@ function page_path(string $page_id, string $lang): string {
 	return '/' . $page['output'][$lang];
 }
 
+/** Relative link to a page in $lang, or to its English version when untranslated. */
+function page_href(string $page_id, string $lang): string {
+	$page = b_pages()[$page_id] ?? null;
+	if ($page === null) {
+		throw new RuntimeException("Unknown page: '$page_id'");
+	}
+	return ltrim(page_path($page_id, isset($page['output'][$lang]) ? $lang : 'eng'), '/');
+}
+
+/** Whether a page has its own version in $lang. */
+function page_has(string $page_id, string $lang): bool {
+	return isset(b_pages()[$page_id]['output'][$lang]);
+}
+
 function render_template(string $name, array $vars = []): string {
 	$file = B_ROOT . '/templates/' . $name;
 	if (!is_file($file)) {
@@ -63,8 +77,14 @@ function render_page(string $page_id, string $lang): string {
 		throw new RuntimeException("Unknown language: '$lang'");
 	}
 	$vars = ['lang' => $lang, 'page_id' => $page_id];
+	$title = $page['title'] ?? t($page['title_key'], $lang);
 	return render_template('layout.php', $vars + [
-		'title' => $page['title'] ?? t($page['title_key'], $lang),
+		'title' => is_array($title) ? $title[$lang] : $title,
 		'content' => render_template($page['template'], $vars),
 	]);
+}
+
+/** Menu label for the case index: marks it as English-only where it is untranslated. */
+function cases_label(string $lang): string {
+	return t(page_has('cases', $lang) ? 'cases' : 'cases_in_english', $lang);
 }

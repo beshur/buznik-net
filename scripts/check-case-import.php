@@ -59,4 +59,29 @@ rejects(function () use ($index, $invalid) { case_content_from_wordpress($index,
 rejects(function () use ($index, $page) { case_content_from_wordpress($index, [$page, $page]); }, 'Reject duplicate URLs');
 rejects(function () use ($index) { case_content_from_wordpress($index, []); }, 'Reject empty fetches');
 
-echo "PASS: editor updates, metadata, rich text, ordering and malformed input\n";
+// Polylang translations: one unfiltered fetch holds every language.
+$en = $acf; $en['id'] = 21; $en['lang'] = 'en'; $en['translations'] = ['en' => 21, 'uk' => 31];
+$uk = $acf; $uk['id'] = 31; $uk['slug'] = 'registration-2'; $uk['menu_order'] = 0; $uk['lang'] = 'uk';
+$uk['translations'] = ['en' => 21, 'uk' => 31]; $uk['title']['raw'] = 'Реєстрація транспорту';
+$uk['acf']['summary'] = 'Підсумок';
+$ru = $uk; $ru['id'] = 41; $ru['lang'] = 'ru'; $ru['translations'] = ['en' => 21, 'ru' => 41];
+$indexEn = $index + ['lang' => 'en', 'translations' => ['en' => 10, 'uk' => 20]];
+$indexUk = ['id' => 20, 'lang' => 'uk', 'title' => ['raw' => 'Проєкти'], 'content' => ['rendered' => '<p>Вступ</p>']];
+$multi = case_content_from_wordpress($indexEn, [$uk, $ru, $en], [$indexUk]);
+check(array_keys($multi['cases']) === ['registration'], 'Translations attach to the English slug, not their own');
+check($multi['cases']['registration']['title'] === 'Vehicle registration', 'English text stays the source');
+check($multi['cases']['registration']['translations']['ukr']['title'] === 'Реєстрація транспорту', 'Ukrainian title attached');
+check($multi['cases']['registration']['translations']['ukr']['summary'] === 'Підсумок', 'Translated ACF fields attached');
+check(array_keys($multi['cases']['registration']['translations']) === ['ukr'], 'Unpublished Polylang languages (ru) are ignored');
+check($multi['index']['translations']['ukr']['title'] === 'Проєкти', 'Translated index title');
+check($multi['index']['translations']['ukr']['company'] === 'Stark Future', 'Translated index falls back to the English company heading');
+check(!isset($acfContent['cases']['registration']['translations']) && !isset($acfContent['index']['translations']),
+	'Records without Polylang fields stay English-only, unchanged');
+$orphan = $uk; $orphan['translations'] = ['uk' => 31];
+rejects(function () use ($indexEn, $en, $orphan) { case_content_from_wordpress($indexEn, [$en, $orphan]); }, 'Reject translations without an English case');
+$incomplete = $uk; unset($incomplete['acf']['scope']);
+rejects(function () use ($indexEn, $en, $incomplete) { case_content_from_wordpress($indexEn, [$en, $incomplete]); }, 'Reject translations missing ACF fields');
+$twice = $uk; $twice['id'] = 32;
+rejects(function () use ($indexEn, $en, $uk, $twice) { case_content_from_wordpress($indexEn, [$en, $uk, $twice]); }, 'Reject two translations of one case');
+
+echo "PASS: editor updates, metadata, rich text, ordering, malformed input and Polylang translations\n";

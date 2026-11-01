@@ -18,10 +18,13 @@ function wp_die($message) { throw new RuntimeException($message); }
 function wp_is_post_revision($id) { return false; }
 function wp_is_post_autosave($id) { return false; }
 function get_posts($args) {
-	return array_values(array_filter($GLOBALS['plugin_checks']['posts'], function ($post) use ($args) {
-		return $post->post_type === $args['post_type'] && $post->post_parent === $args['post_parent'];
+	$posts = array_values(array_filter($GLOBALS['plugin_checks']['posts'], function ($post) use ($args) {
+		return $post->post_type === $args['post_type'] && (!isset($args['post_parent']) || $post->post_parent === $args['post_parent']);
 	}));
+	return ($args['fields'] ?? '') === 'ids' ? array_map(function ($post) { return $post->ID; }, $posts) : $posts;
 }
+function get_option($key) { return $GLOBALS['plugin_checks']['options'][$key] ?? false; }
+function register_rest_field($type, $field, $args) { $GLOBALS['plugin_checks']['rest'][$type][$field] = $args; }
 function get_post($id) { return $GLOBALS['plugin_checks']['posts'][$id] ?? null; }
 function add_post_meta($id, $key, $value, $unique) {
 	if (!isset($GLOBALS['plugin_checks']['meta'][$id][$key])) $GLOBALS['plugin_checks']['meta'][$id][$key] = $value;
@@ -95,4 +98,34 @@ $other = new CompanyQuery(); $other->values['post_type'] = 'page';
 \Buznik\CaseStudies\filter_company_query($other);
 ensure($other->values['meta_query']['relation'] === 'OR', 'Company filter must not change other admin lists');
 unset($_GET['buznik_company']);
-echo "PASS: plugin hooks, ACF schema, migration, reactivation, deployment notice and scoped company filtering\n";
+// Polylang: functions are defined only now, as when Polylang loads after this plugin.
+$GLOBALS['plugin_checks']['languages'] = [2771 => 'en'];
+$GLOBALS['plugin_checks']['translations'] = [2770 => ['en' => 2770, 'uk' => 2780], 2780 => ['en' => 2770, 'uk' => 2780]];
+function pll_default_language($field) { return 'en'; }
+function pll_get_post_language($id, $field = 'slug') { return $GLOBALS['plugin_checks']['languages'][$id] ?? false; }
+function pll_set_post_language($id, $lang) { $GLOBALS['plugin_checks']['languages'][$id] = $lang; }
+function pll_get_post_translations($id) { return $GLOBALS['plugin_checks']['translations'][$id] ?? []; }
+$types = \Buznik\CaseStudies\polylang_post_types(['post' => 'post', 'page' => 'page'], false);
+ensure(($types['buznik_case'] ?? null) === 'buznik_case', 'Case studies are translatable');
+ensure(!isset(\Buznik\CaseStudies\polylang_post_types(['buznik_case' => 'buznik_case'], true)['buznik_case']), 'Translatability is forced, not a settings checkbox');
+\Buznik\CaseStudies\register_language_fields();
+foreach (['buznik_case', 'page'] as $type) {
+	ensure(isset($GLOBALS['plugin_checks']['rest'][$type]['lang'], $GLOBALS['plugin_checks']['rest'][$type]['translations']), "REST lang and translations on $type");
+}
+$rest = $GLOBALS['plugin_checks']['rest']['page'];
+ensure($rest['lang']['get_callback'](['id' => 2771]) === 'en', 'REST lang is the Polylang slug');
+ensure($rest['lang']['get_callback'](['id' => 9999]) === null, 'REST lang is null without a language');
+ensure((array)$rest['translations']['get_callback'](['id' => 2770]) === ['en' => 2770, 'uk' => 2780], 'REST translations map language to post ID');
+$GLOBALS['plugin_checks']['posts'][2773] = (object)['ID' => 2773, 'post_type' => 'buznik_case', 'post_parent' => 0];
+\Buznik\CaseStudies\assign_default_language();
+ensure(($GLOBALS['plugin_checks']['languages'][2773] ?? null) === 'en' && $GLOBALS['plugin_checks']['languages'][2770] === 'en', 'Existing cases and index get the default language');
+$GLOBALS['plugin_checks']['languages'][2773] = 'uk';
+\Buznik\CaseStudies\assign_default_language();
+ensure($GLOBALS['plugin_checks']['languages'][2773] === 'uk', 'Language backfill runs once and never overrides a language');
+unset($GLOBALS['buznik_cases_rebuild_pending']);
+\Buznik\CaseStudies\queue_rebuild(2780, (object)['ID' => 2780, 'post_type' => 'page']);
+ensure(!empty($GLOBALS['buznik_cases_rebuild_pending']), 'Saving a translated index page rebuilds the site');
+unset($GLOBALS['buznik_cases_rebuild_pending']);
+\Buznik\CaseStudies\queue_rebuild(2562, (object)['ID' => 2562, 'post_type' => 'page']);
+ensure(empty($GLOBALS['buznik_cases_rebuild_pending']), 'Other pages do not trigger case rebuilds');
+echo "PASS: plugin hooks, ACF schema, migration, reactivation, deployment notice and scoped company filtering, Polylang translations\n";

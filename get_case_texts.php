@@ -48,9 +48,21 @@ try {
 		$pages = array_merge($pages, $batch);
 		if (count($batch) < 100) break;
 	}
-	$content = case_content_from_wordpress($index, $pages);
+	// Translated index pages, linked by Polylang (empty until the plugin exposes `translations`).
+	$index_translations = [];
+	foreach ($index['translations'] ?? [] as $pll => $id) {
+		if ((int)$id !== (int)$index['id'] && in_array($pll, B_PLL_LANGUAGES, true)) {
+			$index_translations[] = case_wp_get('pages/' . (int)$id . '?context=edit');
+		}
+	}
+	$content = case_content_from_wordpress($index, $pages, $index_translations, B_PLL_LANGUAGES);
 	save_case_content($content, __DIR__ . '/data/cases.json');
-	printf("OK: fetched case index and %d cases from WordPress\n", count($content['cases']));
+	$counts = [];
+	foreach (array_slice(B_PLL_LANGUAGES, 1) as $lang => $pll) {
+		$cases = count(array_filter($content['cases'], function ($case) use ($lang) { return isset($case['translations'][$lang]); }));
+		$counts[] = sprintf('%s %d%s', $lang, $cases, isset($content['index']['translations'][$lang]) ? ' + index' : '');
+	}
+	printf("OK: fetched case index and %d cases from WordPress; translations: %s\n", count($content['cases']), implode(', ', $counts));
 } catch (Throwable $error) {
 	fwrite(STDERR, 'CASE FETCH FAILED: ' . $error->getMessage() . "\n");
 	exit(1);

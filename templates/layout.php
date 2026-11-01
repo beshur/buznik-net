@@ -13,9 +13,9 @@
 <body>
   <div id="container">
     <div class="topbar">
-      <nav class="site-nav" aria-label="<?= $lang === 'ukr' ? 'Головна навігація' : 'Main navigation' ?>">
+      <nav class="site-nav" aria-label="<?= e(t('main_navigation', $lang)) ?>">
         <a href="<?= e(ltrim(page_path('home', $lang), '/')) ?>"<?= $page_id === 'home' ? ' aria-current="page"' : '' ?>><?= e(t('name', $lang)) ?></a>
-        <a href="cases.html"<?= $page_id === 'cases' ? ' aria-current="page"' : '' ?>><?= e(t('cases', $lang)) ?></a>
+        <a href="<?= e(page_href('cases', $lang)) ?>"<?= $page_id === 'cases' ? ' aria-current="page"' : '' ?>><?= e(cases_label($lang)) ?></a>
       </nav>
       <div class="topbar-lang">
         <ul class="list"><?php foreach (array_keys(b_pages()[$page_id]['output']) as $code): ?><?php if ($code === $lang): ?><li class="active"><?= e(B_LANG_LABELS[$code]) ?></li><?php else: ?><li><a href="<?= e(ltrim(page_path($page_id, $code), '/')) ?>"><?= e(B_LANG_LABELS[$code]) ?></a></li><?php endif; ?><?php endforeach; ?></ul>

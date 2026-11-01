@@ -20,7 +20,56 @@ const B_STRINGS = [
 	],
 	'cases' => [
 		'eng' => 'Case studies',
+		'ukr' => 'Проєкти',
+	],
+	// menu label while the case index has no translation in that language
+	'cases_in_english' => [
+		'eng' => 'Case studies',
 		'ukr' => 'Проєкти (англійською)',
+	],
+	'all_cases' => [
+		'eng' => 'All case studies',
+		'ukr' => 'Усі проєкти',
+	],
+	'selected_work' => [
+		'eng' => 'Selected work',
+		'ukr' => 'Вибрані роботи',
+	],
+	'outcome' => [
+		'eng' => 'Outcome',
+		'ukr' => 'Результат',
+	],
+	'scope' => [
+		'eng' => 'My scope',
+		'ukr' => 'Моя роль',
+	],
+	'previous_case' => [
+		'eng' => 'Previous case',
+		'ukr' => 'Попередній проєкт',
+	],
+	'next_case' => [
+		'eng' => 'Next case',
+		'ukr' => 'Наступний проєкт',
+	],
+	'in_english' => [
+		'eng' => 'In English',
+		'ukr' => 'Англійською',
+	],
+	'about_me' => [
+		'eng' => 'About me',
+		'ukr' => 'Про мене',
+	],
+	'get_in_touch' => [
+		'eng' => 'Get in touch',
+		'ukr' => 'Написати мені',
+	],
+	'main_navigation' => [
+		'eng' => 'Main navigation',
+		'ukr' => 'Головна навігація',
+	],
+	'breadcrumb' => [
+		'eng' => 'Breadcrumb',
+		'ukr' => 'Навігація',
 	],
 	'name' => [
 		'eng' => 'Alex Buznik',
