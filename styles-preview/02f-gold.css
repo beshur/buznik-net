@@ -1,0 +1,22 @@
+/* 02f-gold — color variant of 02-editorial */
+@import url("02-editorial.css");
+
+:root {
+  --paper: #f7f5ef;
+  --ink: #29251c;
+  --ink-soft: #5f594a;
+  --rule: #ded6c1;
+  --accent: #9c7315;
+  --accent-hover: #7a590f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #171510;
+    --ink: #ece5d3;
+    --ink-soft: #b0a687;
+    --rule: #383223;
+    --accent: #d9a83e;
+    --accent-hover: #e6bd63;
+  }
+}

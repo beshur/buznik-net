@@ -1,0 +1,202 @@
+/* 05 — Ink: high-contrast minimal. #fff / #000 only. */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #fff;
+  --fg: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000;
+    --fg: #fff;
+  }
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+/* ---- Links: black, thick underline, invert on hover ---- */
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 3px solid var(--fg);
+  font-weight: 700;
+  padding: 0 0.1em;
+}
+
+a:hover,
+a:focus-visible {
+  background: var(--fg);
+  color: var(--bg);
+  border-bottom-color: var(--fg);
+  outline: none;
+}
+
+/* ---- Language switch ---- */
+
+.lang {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 3.5rem;
+}
+
+.lang-active {
+  border-bottom: 3px solid var(--fg);
+}
+
+.lang a {
+  font-weight: 800;
+}
+
+/* ---- Masthead ---- */
+
+.masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+h1 {
+  font-size: clamp(3rem, 11vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.tagline {
+  margin-top: 1.25rem;
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.mark {
+  flex: 0 0 auto;
+  width: clamp(64px, 12vw, 104px);
+  color: var(--fg);
+}
+
+.mark svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---- Sections & rules ---- */
+
+section {
+  border-top: 3px solid var(--fg);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+}
+
+main > section:first-child {
+  margin-top: 3.5rem;
+}
+
+.label {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-bottom: 1.25rem;
+}
+
+section p + p {
+  margin-top: 1rem;
+}
+
+.stack {
+  font-weight: 700;
+}
+
+/* ---- Link lists ---- */
+
+.link-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.link-list li {
+  margin-top: 0.75rem;
+}
+
+.link-list a {
+  border-bottom-width: 3px;
+}
+
+/* ---- Stand with Ukraine (only color exception) ---- */
+
+.ukraine {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 3px solid var(--fg);
+  border-bottom: 3px solid var(--fg);
+  padding: 1rem 1.25rem;
+  margin-top: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1rem;
+}
+
+.ukraine:hover,
+.ukraine:focus-visible {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.ukraine-flag {
+  flex: 0 0 auto;
+  display: block;
+  width: 54px;
+  height: 36px;
+  background: linear-gradient(to bottom, #0057b7 0 50%, #ffd700 50% 100%);
+}
+
+/* ---- Mobile ---- */
+
+@media (max-width: 560px) {
+  body {
+    padding: 1.75rem 1.125rem 4rem;
+  }
+
+  .lang {
+    margin-bottom: 2.5rem;
+  }
+
+  .masthead {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .link-list a {
+    border-bottom-width: 2px;
+  }
+}

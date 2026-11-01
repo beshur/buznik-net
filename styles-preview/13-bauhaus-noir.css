@@ -1,0 +1,319 @@
+/* 13 — Bauhaus Noir
+   Near-black gallery-poster-at-night. Pure CSS geometry, no external assets. */
+
+:root {
+  --ink: #141311;
+  --paper: #f0ebe0;
+  --red: #e04a35;
+  --yellow: #f2b705;
+  --blue: #3a6fd8;
+  --muted: #a49c8c;
+  --ua-blue: #0057b7;
+  --ua-yellow: #ffd700;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: Futura, 'Century Gothic', 'Avenir Next', 'Trebuchet MS', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ---------- Geometric stage (behind everything) ---------- */
+
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shape { position: absolute; }
+
+/* Big yellow circle, bleeding off the top-right corner */
+.shape-circle {
+  width: 34vw;
+  height: 34vw;
+  max-width: 460px;
+  max-height: 460px;
+  min-width: 240px;
+  min-height: 240px;
+  border-radius: 50%;
+  background: var(--yellow);
+  top: -12vw;
+  right: -10vw;
+  opacity: 0.92;
+}
+
+/* Red diagonal bar sweeping behind the header */
+.shape-bar {
+  width: 150vw;
+  height: 42px;
+  background: var(--red);
+  top: 330px;
+  left: -25vw;
+  transform: rotate(-24deg);
+  opacity: 0.85;
+}
+
+/* Blue semicircle rising from the bottom-left edge */
+.shape-semi {
+  width: 30vw;
+  height: 15vw;
+  max-width: 420px;
+  max-height: 210px;
+  min-width: 200px;
+  min-height: 100px;
+  background: var(--blue);
+  border-radius: 999px 999px 0 0;
+  bottom: 0;
+  left: -6vw;
+  opacity: 0.9;
+}
+
+/* Small off-white dot as a counterweight */
+.shape-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--paper);
+  top: 12%;
+  left: 6%;
+  opacity: 0.7;
+}
+
+/* ---------- Page column ---------- */
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 56px 28px 80px;
+}
+
+/* ---------- Masthead ---------- */
+
+.lang {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 56px;
+}
+
+.lang-active {
+  color: var(--ink);
+  background: var(--yellow);
+  padding: 2px 10px;
+  font-weight: 700;
+}
+
+.lang a {
+  color: var(--paper);
+  background: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--muted);
+  padding: 2px 10px;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.lang a:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+h1 {
+  font-size: clamp(3rem, 9vw, 5.4rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.02;
+  margin-bottom: 18px;
+}
+
+h1 .accent-red { color: var(--red); }
+
+.tagline {
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  margin-bottom: 48px;
+}
+
+/* ---------- Links ---------- */
+
+a {
+  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+
+a:hover {
+  color: var(--red);
+  text-decoration-color: var(--red);
+}
+
+/* ---------- Dividers: thick tri-color bars ---------- */
+
+.divider {
+  display: flex;
+  height: 10px;
+  margin: 48px 0;
+}
+
+.divider i { display: block; height: 100%; }
+.d-red    { background: var(--red);    flex: 3; }
+.d-yellow { background: var(--yellow); flex: 2; }
+.d-blue   { background: var(--blue);   flex: 1.4; }
+
+/* ---------- Sections ---------- */
+
+section { margin-bottom: 12px; }
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--paper);
+  margin-bottom: 20px;
+}
+
+.sq {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+.sq-red    { background: var(--red); }
+.sq-yellow { background: var(--yellow); }
+.sq-blue   { background: var(--blue); }
+
+section p { margin-bottom: 16px; max-width: 58ch; }
+
+.stack { color: var(--muted); font-size: 0.95rem; }
+.stack strong { color: var(--paper); font-weight: 700; }
+
+/* ---------- Lists ---------- */
+
+.posts, .links { list-style: none; }
+
+.posts li, .links li {
+  padding: 8px 0;
+  padding-left: 22px;
+  position: relative;
+}
+
+.posts li::before, .links li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.95em;
+  width: 9px;
+  height: 9px;
+  background: var(--blue);
+}
+
+.posts li:nth-child(2)::before, .links li:nth-child(2)::before { background: var(--yellow); }
+.posts li:nth-child(3)::before, .links li:nth-child(3)::before { background: var(--red); }
+.links li:nth-child(4)::before { background: var(--paper); }
+
+/* ---------- Stand with Ukraine (pure CSS flag) ---------- */
+
+.ukraine {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin: 36px 0 8px;
+  padding: 14px 20px;
+  border: 2px solid var(--paper);
+  text-decoration: none;
+  color: var(--paper);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.85rem;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.ukraine .flag {
+  display: block;
+  width: 54px;
+  height: 36px;
+  flex: none;
+  background: linear-gradient(to bottom, var(--ua-blue) 0 50%, var(--ua-yellow) 50% 100%);
+}
+
+.ukraine:hover {
+  border-color: var(--ua-yellow);
+  color: var(--ua-yellow);
+}
+
+/* ---------- Footer / crane ---------- */
+
+footer {
+  margin-top: 72px;
+  display: flex;
+  justify-content: center;
+}
+
+.crane {
+  color: var(--yellow);
+  display: inline-block;
+}
+
+.crane svg {
+  width: 64px;
+  height: 64px;
+  display: block;
+}
+
+/* ---------- Responsive: 420px ---------- */
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+
+  .page { padding: 36px 20px 64px; }
+
+  .lang { margin-bottom: 40px; }
+
+  /* Shapes shrink and retreat to the very edges */
+  .shape-circle {
+    width: 160px;
+    height: 160px;
+    min-width: 0;
+    min-height: 0;
+    top: -70px;
+    right: -70px;
+  }
+
+  .shape-bar { display: none; }
+
+  .shape-semi { display: none; }
+
+  .shape-dot { display: none; }
+
+  .divider { margin: 36px 0; height: 8px; }
+
+  .ukraine { gap: 12px; padding: 12px 14px; letter-spacing: 0.1em; }
+  .ukraine .flag { width: 42px; height: 28px; }
+}

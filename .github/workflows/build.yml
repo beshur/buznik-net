@@ -1,5 +1,6 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# Builds dist/ with bun and publishes it as a GitHub release (dist.zip),
+# then pings the server webhook (trigger_deploy.php -> deploy.sh), which
+# downloads the latest release into www/ and runs dist/cron.sh there.
 
 name: Build Assets
 
@@ -14,31 +15,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Cache node modules
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-node-modules
+      - uses: oven-sh/setup-bun@v2
         with:
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          bun-version: "1.3"
 
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 20.x
-      - run: mkdir "$HOME/.ssh" && touch "$HOME/.ssh/id_rsa"
-      - run: yarn --force
-      - run: yarn build
+      - run: bun install --frozen-lockfile
+      - run: bun run build
       - run: zip -r dist.zip dist/*
+
       - name: Get short SHA
         id: sha_short
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "dist.zip"
@@ -48,6 +38,7 @@ jobs:
           draft: false
           prerelease: false
           makeLatest: true
+
       - name: Invoke deployment hook
         uses: distributhor/workflow-webhook@v1
         env:

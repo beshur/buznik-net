@@ -1,0 +1,308 @@
+/* 12 — Muted Bauhaus: Bauhaus grammar, Scandinavian calm */
+
+:root {
+  --paper: #efece5;
+  --ink: #262420;
+  --red: #b85c4a;
+  --mustard: #cfa14a;
+  --blue: #52709b;
+  --soft: rgba(38, 36, 32, 0.62);
+  --hairline: rgba(38, 36, 32, 0.16);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Futura, 'Century Gothic', 'Avenir Next', 'Trebuchet MS', sans-serif;
+  font-weight: 500;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.65;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ---- marginal geometry ---- */
+
+.geo { position: fixed; z-index: 0; pointer-events: none; }
+
+.geo-quarter {
+  top: 0;
+  right: 0;
+  width: 190px;
+  height: 190px;
+  background: var(--blue);
+  opacity: 0.28;
+  border-radius: 0 0 0 100%;
+}
+
+.geo-triangle {
+  bottom: 56px;
+  left: 34px;
+  width: 0;
+  height: 0;
+  border-left: 34px solid transparent;
+  border-right: 34px solid transparent;
+  border-bottom: 58px solid var(--mustard);
+  opacity: 0.5;
+}
+
+/* ---- column ---- */
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 56px 28px 72px;
+}
+
+/* ---- language switch ---- */
+
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 64px;
+}
+
+.lang-active {
+  color: var(--ink);
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 1px;
+}
+
+.lang-sep {
+  width: 8px;
+  height: 8px;
+  background: var(--mustard);
+  display: inline-block;
+}
+
+.lang a {
+  color: var(--soft);
+  text-decoration: none;
+  padding-bottom: 1px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.lang a:hover { color: var(--ink); border-bottom-color: var(--blue); }
+
+/* ---- masthead ---- */
+
+.masthead { margin-bottom: 48px; }
+
+.sig-squares {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.sq { width: 14px; height: 14px; display: inline-block; }
+.sq-red { background: var(--red); }
+.sq-mustard { background: var(--mustard); }
+.sq-blue { background: var(--blue); }
+
+h1 {
+  font-size: clamp(2.1rem, 6vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.12;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  font-size: 1.05rem;
+  color: var(--soft);
+  margin-bottom: 26px;
+}
+
+.tagline a {
+  color: var(--red);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: color 0.15s ease;
+}
+
+.tagline a:hover { color: var(--ink); }
+
+/* ---- Stand with Ukraine (pure CSS) ---- */
+
+.ukraine {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--hairline);
+  padding: 9px 16px 9px 12px;
+  transition: border-color 0.15s ease;
+}
+
+.ukraine:hover { border-color: var(--blue); }
+
+.ukraine-flag {
+  width: 27px;
+  height: 18px;
+  flex: none;
+  background: linear-gradient(to bottom, #0057b7 0 50%, #ffd700 50% 100%);
+}
+
+.ukraine:hover .ukraine-text { color: #0057b7; }
+
+/* ---- section divider bars ---- */
+
+.bar {
+  border: 0;
+  height: 3px;
+  width: 64px;
+  margin: 44px 0;
+}
+
+.bar-red { background: var(--red); }
+.bar-mustard { background: var(--mustard); }
+.bar-blue { background: var(--blue); }
+
+/* ---- prose ---- */
+
+.about p + p { margin-top: 18px; }
+
+.stack { color: var(--soft); font-size: 0.95rem; }
+
+.stack-lead { color: var(--ink); }
+
+/* ---- blog ---- */
+
+.section-note { margin-bottom: 18px; }
+
+.section-note a {
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.section-note a:hover { color: var(--ink); }
+
+.post-list { list-style: none; }
+
+.post-list li {
+  padding: 10px 0 10px 20px;
+  position: relative;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.post-list li:first-child { border-top: 1px solid var(--hairline); }
+
+.post-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+}
+
+.post-list li:nth-child(3n+1)::before { background: var(--red); }
+.post-list li:nth-child(3n+2)::before { background: var(--mustard); }
+.post-list li:nth-child(3n+3)::before { background: var(--blue); }
+
+.post-list a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.post-list a:hover { color: var(--red); }
+
+/* ---- work & contact ---- */
+
+h2 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--soft);
+  margin-bottom: 14px;
+}
+
+.link-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+}
+
+.link-list a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 2px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.link-list a:hover { color: var(--blue); border-bottom-color: var(--blue); }
+
+/* ---- colophon / crane ---- */
+
+.colophon {
+  margin-top: 64px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.crane {
+  color: var(--red);
+  display: inline-block;
+}
+
+.crane svg {
+  width: 44px;
+  height: 44px;
+  display: block;
+}
+
+/* ---- responsive ---- */
+
+@media (max-width: 720px) {
+  .geo-quarter { width: 110px; height: 110px; }
+  .geo-triangle { display: none; }
+}
+
+@media (max-width: 440px) {
+  .page { padding: 40px 20px 56px; }
+  .lang { margin-bottom: 44px; }
+  .geo-quarter { width: 72px; height: 72px; opacity: 0.22; }
+  .bar { margin: 36px 0; }
+  .colophon { margin-top: 48px; }
+}
+
+/* ---- dark variant ---- */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1b1916;
+    --ink: #ece7dc;
+    --red: #c9705e;
+    --mustard: #d9ad5c;
+    --blue: #6d89b3;
+    --soft: rgba(236, 231, 220, 0.6);
+    --hairline: rgba(236, 231, 220, 0.18);
+  }
+
+  .geo-quarter { opacity: 0.34; }
+
+  .ukraine-flag {
+    background: linear-gradient(to bottom, #2a6fc4 0 50%, #ffd700 50% 100%);
+  }
+
+  .ukraine:hover .ukraine-text { color: #ffd700; }
+}

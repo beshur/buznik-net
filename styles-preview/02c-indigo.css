@@ -1,0 +1,22 @@
+/* 02c-indigo — color variant of 02-editorial */
+@import url("02-editorial.css");
+
+:root {
+  --paper: #f5f6fb;
+  --ink: #232637;
+  --ink-soft: #565b74;
+  --rule: #d2d5e7;
+  --accent: #47519e;
+  --accent-hover: #333c80;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14151d;
+    --ink: #e3e5f2;
+    --ink-soft: #a3a8c2;
+    --rule: #30334a;
+    --accent: #97a2ea;
+    --accent-hover: #b0b9f2;
+  }
+}

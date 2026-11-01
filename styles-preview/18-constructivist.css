@@ -1,0 +1,607 @@
+/* ============================================================
+   18 — CONSTRUCTIVIST WEDGE
+   El Lissitzky / Rodchenko agitprop poster energy.
+   Cream ground, ink black, revolutionary red. Diagonals only.
+   ============================================================ */
+
+:root {
+  --cream: #ece4d2;
+  --ink: #191510;
+  --red: #cf2b1d;
+  --ua-blue: #0057b7;
+  --ua-yellow: #ffd700;
+  --narrow: 'Arial Narrow', Futura, 'Trebuchet MS', Arial, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background: var(--cream); }
+
+body {
+  font-family: var(--narrow);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.45;
+  overflow-x: hidden;
+}
+
+.poster {
+  position: relative;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 48px 64px;
+}
+
+/* ------------------------------------------------------------
+   GEOMETRY — the wedge drives into the circle
+   ------------------------------------------------------------ */
+
+.geo {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 620px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.geo-circle {
+  position: absolute;
+  top: 36px;
+  right: 4%;
+  width: 400px;
+  height: 400px;
+  border: 16px solid var(--ink);
+  border-radius: 50%;
+}
+
+.geo-wedge {
+  position: absolute;
+  top: 118px;
+  left: -180px;
+  width: 920px;
+  height: 300px;
+  background: var(--red);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  transform: rotate(-12deg);
+}
+
+.geo-dot {
+  position: absolute;
+  top: 96px;
+  right: calc(4% + 168px);
+  width: 34px;
+  height: 34px;
+  background: var(--ink);
+  border-radius: 50%;
+}
+
+.geo-bar {
+  position: absolute;
+  top: 470px;
+  right: 0;
+  width: 240px;
+  height: 14px;
+  background: var(--ink);
+  transform: rotate(-12deg);
+}
+
+/* ------------------------------------------------------------
+   LANGUAGE SWITCH
+   ------------------------------------------------------------ */
+
+.lang {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0;
+  padding-top: 28px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.lang-active,
+.lang-link {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 3px solid var(--ink);
+}
+
+.lang-active {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.lang-link {
+  background: var(--cream);
+  color: var(--ink);
+  border-left: none;
+  text-decoration: none;
+}
+
+.lang-link:hover,
+.lang-link:focus-visible {
+  background: var(--red);
+  color: var(--cream);
+}
+
+/* ------------------------------------------------------------
+   MASTHEAD
+   ------------------------------------------------------------ */
+
+.masthead {
+  position: relative;
+  z-index: 2;
+  padding: 96px 0 120px;
+  max-width: 620px;
+}
+
+.overline {
+  display: inline-block;
+  background: var(--cream);
+  border: 3px solid var(--ink);
+  padding: 4px 12px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transform: rotate(-4deg);
+  transform-origin: left bottom;
+  margin-bottom: 26px;
+}
+
+h1 {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--cream);
+  font-size: clamp(3.2rem, 9vw, 6.4rem);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  padding: 22px 30px 26px;
+  transform: rotate(-4deg);
+  transform-origin: left top;
+  box-shadow: 12px 12px 0 var(--red);
+}
+
+.tagline {
+  display: inline-block;
+  margin-top: 44px;
+  margin-left: 14px;
+  transform: rotate(-4deg);
+  transform-origin: left top;
+  background: var(--cream);
+  outline: 3px solid var(--ink);
+  padding: 8px 16px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ------------------------------------------------------------
+   LINKS — black underline, red block on hover
+   ------------------------------------------------------------ */
+
+a {
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
+}
+
+a:hover,
+a:focus-visible {
+  background: var(--red);
+  color: var(--cream);
+  text-decoration: none;
+  outline: none;
+}
+
+/* ------------------------------------------------------------
+   DIAGONAL STRIPE BAND
+   ------------------------------------------------------------ */
+
+.stripes {
+  position: relative;
+  z-index: 2;
+  height: 30px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--ink) 0 14px,
+    transparent 14px 30px
+  );
+  margin: 0 -48px;
+}
+
+.stripes-thin {
+  height: 16px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--ink) 0 8px,
+    transparent 8px 18px
+  );
+}
+
+/* ------------------------------------------------------------
+   SECTIONS + VERTICAL SPINE LABELS
+   ------------------------------------------------------------ */
+
+main {
+  position: relative;
+  z-index: 2;
+}
+
+.sec {
+  position: relative;
+  padding: 56px 0 8px 84px;
+}
+
+.sec-label {
+  position: absolute;
+  left: 0;
+  top: 56px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  background: var(--ink);
+  color: var(--cream);
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  padding: 18px 8px 12px;
+  min-height: 150px;
+}
+
+.sec-blog .sec-label { background: var(--red); }
+
+.sec-body { max-width: 640px; }
+
+/* ------------------------------------------------------------
+   BIO + STACK
+   ------------------------------------------------------------ */
+
+.bio {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.loud {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--red);
+  color: var(--cream);
+  padding: 1px 8px 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.stack-block { margin-top: 36px; }
+
+.stack-title {
+  font-size: 0.85rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin: 26px 0 12px;
+}
+
+.stack-title::before {
+  content: "";
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  background: var(--red);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  margin-right: 10px;
+}
+
+.stack {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.stack li {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 8px 22px 8px 14px;
+  background: var(--ink);
+  color: var(--cream);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+}
+
+.stack-main li:nth-child(odd) { background: var(--red); }
+
+.stack-alt li {
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 3px var(--ink);
+}
+
+/* ------------------------------------------------------------
+   STAND WITH UKRAINE — pure CSS
+   ------------------------------------------------------------ */
+
+.ukraine {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 56px 0 8px 84px;
+  max-width: 640px;
+  border: 4px solid var(--ink);
+  background: var(--cream);
+  text-decoration: none;
+  box-shadow: 10px 10px 0 var(--ink);
+  transform: rotate(-2deg);
+}
+
+.ukraine-flag {
+  flex: 0 0 96px;
+  background: linear-gradient(
+    to bottom,
+    var(--ua-blue) 0 50%,
+    var(--ua-yellow) 50% 100%
+  );
+  border-right: 4px solid var(--ink);
+}
+
+.ukraine-text {
+  flex: 1;
+  padding: 18px 22px;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.ukraine-arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-size: 2rem;
+  font-weight: 900;
+  background: var(--ua-blue);
+  color: var(--ua-yellow);
+  border-left: 4px solid var(--ink);
+}
+
+.ukraine:hover,
+.ukraine:focus-visible {
+  background: var(--ua-yellow);
+  color: var(--ink);
+}
+
+.ukraine:hover .ukraine-text { color: var(--ink); }
+
+/* ------------------------------------------------------------
+   BLOG POSTS
+   ------------------------------------------------------------ */
+
+.blog-intro {
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+
+.posts {
+  list-style: none;
+}
+
+.posts li {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 3px solid var(--ink);
+  font-size: 1.15rem;
+}
+
+.posts li:last-child { border-bottom: 3px solid var(--ink); }
+
+.post-no {
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: var(--red);
+  flex: 0 0 auto;
+}
+
+/* ------------------------------------------------------------
+   WORK + CONTACT GRIDS
+   ------------------------------------------------------------ */
+
+.grid-links {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border: 3px solid var(--ink);
+}
+
+.grid-links li {
+  border: 3px solid var(--ink);
+  margin: -3px 0 0 -3px;
+}
+
+.grid-links a {
+  display: block;
+  padding: 16px 18px;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  box-shadow: inset 0 -4px 0 var(--ink);
+}
+
+.grid-links a:hover,
+.grid-links a:focus-visible {
+  background: var(--red);
+  color: var(--cream);
+  box-shadow: none;
+}
+
+/* ------------------------------------------------------------
+   CONTACT + CRANE
+   ------------------------------------------------------------ */
+
+.contact-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+}
+
+.contact-links { flex: 1; }
+
+.crane {
+  flex: 0 0 auto;
+  width: 120px;
+  color: var(--red);
+  transform: rotate(-8deg);
+  filter: drop-shadow(6px 6px 0 var(--ink));
+}
+
+.crane svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ------------------------------------------------------------
+   COLOPHON
+   ------------------------------------------------------------ */
+
+.colophon {
+  position: relative;
+  z-index: 2;
+  margin-top: 72px;
+}
+
+.colophon p {
+  margin-top: 18px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  text-align: right;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE — 420px: geometry shrinks, labels lie down
+   ------------------------------------------------------------ */
+
+@media (max-width: 640px) {
+  .poster { padding: 0 20px 48px; }
+
+  .geo { height: 380px; }
+
+  .geo-circle {
+    top: 40px;
+    right: -30px;
+    width: 210px;
+    height: 210px;
+    border-width: 10px;
+  }
+
+  .geo-wedge {
+    top: 92px;
+    left: -140px;
+    width: 420px;
+    height: 170px;
+  }
+
+  .geo-dot {
+    top: 74px;
+    right: 62px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .geo-bar {
+    top: 292px;
+    width: 130px;
+    height: 10px;
+  }
+
+  .lang { padding-top: 20px; }
+
+  .masthead { padding: 64px 0 72px; }
+
+  h1 {
+    font-size: clamp(2.6rem, 13vw, 3.4rem);
+    padding: 14px 18px 18px;
+    box-shadow: 8px 8px 0 var(--red);
+  }
+
+  .tagline {
+    margin-top: 30px;
+    margin-left: 6px;
+    font-size: 1rem;
+  }
+
+  .stripes { margin: 0 -20px; }
+
+  .sec { padding: 44px 0 8px 0; }
+
+  .sec-label {
+    position: static;
+    writing-mode: horizontal-tb;
+    transform: none;
+    display: inline-block;
+    min-height: 0;
+    padding: 6px 14px;
+    margin-bottom: 20px;
+  }
+
+  .bio { font-size: 1.12rem; }
+
+  .ukraine {
+    margin-left: 0;
+    transform: rotate(-1deg);
+    box-shadow: 7px 7px 0 var(--ink);
+  }
+
+  .ukraine-flag { flex-basis: 56px; }
+
+  .ukraine-text {
+    font-size: 1.15rem;
+    padding: 14px 16px;
+  }
+
+  .ukraine-arrow { padding: 0 14px; font-size: 1.4rem; }
+
+  .grid-links { grid-template-columns: 1fr; }
+
+  .contact-body {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .contact-links { width: 100%; }
+
+  .crane {
+    width: 96px;
+    align-self: flex-end;
+    margin-right: 10px;
+  }
+
+  .colophon p {
+    letter-spacing: 0.14em;
+    text-align: left;
+  }
+}

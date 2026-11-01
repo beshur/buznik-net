@@ -146,6 +146,7 @@ section.resume header .pic .shu .face {
   position: absolute;
   top: 0;
   left: 0;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   display: block;
   width: 100%;
@@ -221,6 +222,183 @@ section.resume .links ul li {
 .topbar .location-icon {
   position: absolute;
   margin-left: -1em;
+}
+
+/* Case studies share the homepage typography, palette and page gutters. */
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.site-nav [aria-current="page"] {
+  color: inherit;
+  border-bottom-color: transparent;
+}
+.case-main {
+  max-width: 760px;
+  margin: 64px 0 80px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.case-header {
+  margin-bottom: 48px;
+}
+.case-header h1 {
+  margin: 10px 0 20px;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: normal;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+.case-eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--brandColor);
+}
+.case-intro {
+  max-width: 620px;
+  font-family: Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+}
+.case-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.case-list > li {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 16px;
+  padding: 30px 0;
+  border-top: 1px solid #ccc;
+}
+.case-number {
+  padding-top: 2px;
+  font-size: 12px;
+  color: #666;
+}
+.case-list h3 {
+  margin: 0 0 12px;
+  font-size: 23px;
+  font-weight: normal;
+  line-height: 1.35;
+}
+.case-arrow {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: -0.2em;
+}
+.case-arrow--left {
+  transform: rotate(180deg);
+}
+.case-arrow--up-right {
+  transform: rotate(-45deg);
+}
+.case-back .case-arrow,
+.case-pagination .case-arrow {
+  width: 16px;
+  height: 16px;
+}
+.case-list p {
+  margin: 0 0 10px;
+}
+.case-list .case-outcome {
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: bold;
+}
+.case-company {
+  margin: 0 0 40px;
+  font-size: inherit;
+  line-height: inherit;
+}
+.case-company > h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: normal;
+}
+.case-back {
+  margin-bottom: 30px;
+  font-size: 13px;
+}
+.case-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  margin: 28px 0 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  font-size: 13px;
+}
+.case-facts dt {
+  margin-bottom: 4px;
+  color: #666;
+}
+.case-facts dd {
+  margin: 0;
+}
+.case-story {
+  max-width: 640px;
+}
+.case-story section {
+  margin: 32px 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+.case-story h2 {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 32px 0 10px;
+}
+.case-story p {
+  margin: 0 0 16px;
+  font-family: Geneva, Tahoma, sans-serif;
+}
+.case-pagination {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  border-top: 1px solid #ccc;
+  padding-top: 24px;
+  margin-top: 48px;
+  font-size: 14px;
+}
+.case-pagination a {
+  max-width: 46%;
+}
+.case-pagination span {
+  display: block;
+  font-size: 12px;
+}
+.case-next {
+  margin-left: auto;
+  text-align: right;
+}
+.case-footer {
+  margin-top: 48px;
+  font-size: 12px;
+}
+a:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--brandColor);
+  outline-offset: 4px;
+}
+@media screen and (max-width: 768px) {
+  .topbar { gap: 20px; padding-top: 24px; padding-bottom: 24px; }
+  .case-main { margin-top: 32px; }
+  .case-header { margin-bottom: 32px; }
+  .case-list > li { grid-template-columns: 24px minmax(0, 1fr); gap: 10px; }
+  .case-list h3 { font-size: 21px; }
+  .case-facts { grid-template-columns: 1fr; gap: 16px; }
+}
+@media (prefers-color-scheme: dark) {
+  .case-eyebrow { color: #88b3e2; }
+  .case-number, .case-facts dt { color: #aab9c9; }
+  .case-list > li, .case-facts, .case-pagination { border-color: #435568; }
 }
 
 @media (prefers-color-scheme: dark) {

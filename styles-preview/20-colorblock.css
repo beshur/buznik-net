@@ -1,0 +1,406 @@
+/* ============================================================
+   20 · COLOR-BLOCK BANDS — Bauhaus poster-book, page by page
+   ============================================================ */
+
+:root {
+  --black:  #131210;
+  --paper:  #f1ece0;
+  --yellow: #f2b705;
+  --blue:   #0057b7;
+  --red:    #d63a2f;
+  --flag-blue:   #0057b7;
+  --flag-yellow: #ffd700;
+  --font: 'Helvetica Neue', 'Avenir Next', Futura, 'Century Gothic', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  font-weight: 300;
+  background: var(--black);
+  color: var(--paper);
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+/* ---------- band skeleton ---------- */
+
+.band {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3.5rem, 9vw, 7rem) clamp(1.25rem, 6vw, 5rem);
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.orn {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---------- type ---------- */
+
+h1 {
+  font-size: clamp(3.4rem, 12.5vw, 9.5rem);
+  line-height: 0.92;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0.4em 0 0.18em;
+}
+
+h2 {
+  font-size: clamp(2.6rem, 7.5vw, 5.5rem);
+  line-height: 0.95;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 0.55em;
+}
+
+.lead {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  max-width: 42em;
+}
+
+a {
+  color: currentColor;
+  text-decoration: underline;
+  text-decoration-thickness: 0.14em;
+  text-underline-offset: 0.18em;
+  font-weight: 300;
+}
+
+a:hover, a:focus-visible {
+  text-decoration-thickness: 0.3em;
+}
+
+/* ============================================================
+   BAND 1 · HERO · BLACK
+   ============================================================ */
+
+.band-hero {
+  background: var(--black);
+  color: var(--paper);
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  padding-bottom: clamp(4rem, 10vw, 8rem);
+}
+
+.band-hero .tagline {
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.band-hero a { color: var(--yellow); }
+
+/* language switch */
+.lang {
+  display: flex;
+  gap: 1.1rem;
+  justify-content: flex-end;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.95rem;
+}
+
+.lang-active {
+  color: var(--black);
+  background: var(--yellow);
+  padding: 0.15em 0.55em;
+}
+
+.lang a {
+  color: var(--paper);
+  padding: 0.15em 0.1em;
+}
+
+/* crane mark */
+.crane {
+  width: clamp(64px, 9vw, 104px);
+  color: var(--yellow);
+  margin-top: clamp(1.5rem, 4vw, 3rem);
+}
+
+.crane svg { display: block; width: 100%; height: auto; }
+
+/* hero ornaments: yellow circle outline right, red semicircle from left */
+.orn-hero-circle {
+  right: -6vw;
+  top: 14%;
+  width: clamp(180px, 30vw, 420px);
+  height: clamp(180px, 30vw, 420px);
+  border: clamp(10px, 1.8vw, 24px) solid var(--yellow);
+  border-radius: 50%;
+  opacity: 0.9;
+}
+
+.orn-hero-semi {
+  left: 0;
+  bottom: -1px;
+  width: clamp(110px, 18vw, 260px);
+  height: clamp(55px, 9vw, 130px);
+  background: var(--red);
+  border-radius: clamp(110px, 18vw, 260px) clamp(110px, 18vw, 260px) 0 0;
+}
+
+/* ============================================================
+   BAND 2 · BIO · YELLOW  (diagonal bottom edge over the blue)
+   ============================================================ */
+
+.band-bio {
+  background: var(--yellow);
+  color: var(--black);
+  z-index: 3;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - clamp(2.5rem, 6vw, 5rem)));
+  margin-bottom: calc(-1 * clamp(2.5rem, 6vw, 5rem));
+  padding-bottom: calc(clamp(3.5rem, 9vw, 7rem) + clamp(2.5rem, 6vw, 5rem));
+}
+
+.band-bio a { color: var(--black); }
+
+.band-bio .stack {
+  margin-top: 1.4em;
+  font-size: clamp(0.98rem, 1.8vw, 1.15rem);
+  border-left: 0.55em solid var(--black);
+  padding-left: 1.1em;
+}
+
+/* black triangle bleeding from the right edge */
+.orn-bio-tri {
+  right: 0;
+  top: 8%;
+  width: 0;
+  height: 0;
+  border-top: clamp(70px, 11vw, 160px) solid transparent;
+  border-bottom: clamp(70px, 11vw, 160px) solid transparent;
+  border-right: clamp(60px, 10vw, 150px) solid var(--black);
+}
+
+/* ============================================================
+   BAND 3 · UKRAINE · BLUE
+   ============================================================ */
+
+.band-ukraine {
+  background: var(--blue);
+  color: #ffffff;
+  padding-top: calc(clamp(3.5rem, 9vw, 7rem) + clamp(2.5rem, 6vw, 5rem));
+}
+
+.ukraine {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.2rem, 4vw, 2.5rem);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.ukraine-text {
+  font-size: clamp(2.2rem, 6.5vw, 4.8rem);
+  line-height: 0.98;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-decoration: underline;
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.14em;
+  text-decoration-color: var(--flag-yellow);
+}
+
+.ukraine:hover .ukraine-text,
+.ukraine:focus-visible .ukraine-text {
+  text-decoration-thickness: 0.22em;
+}
+
+/* pure-CSS flag */
+.flag {
+  flex: 0 0 auto;
+  width: clamp(96px, 16vw, 180px);
+  height: clamp(64px, 10.7vw, 120px);
+  background: linear-gradient(to bottom, var(--flag-blue) 0 50%, var(--flag-yellow) 50% 100%);
+  outline: clamp(5px, 0.8vw, 8px) solid #ffffff;
+  outline-offset: clamp(-5px, -0.8vw, -8px);
+}
+
+/* yellow ring bleeding from the right */
+.orn-ua-ring {
+  right: -5vw;
+  top: 50%;
+  transform: translateY(-38%);
+  width: clamp(150px, 24vw, 340px);
+  height: clamp(150px, 24vw, 340px);
+  border: clamp(9px, 1.5vw, 20px) solid var(--flag-yellow);
+  border-radius: 50%;
+}
+
+/* ============================================================
+   BAND 4 · BLOG · OFF-WHITE
+   ============================================================ */
+
+.band-blog {
+  background: var(--paper);
+  color: var(--black);
+}
+
+.band-blog h2 { color: var(--red); }
+
+.band-blog a {
+  color: var(--black);
+  text-decoration-color: var(--red);
+}
+
+.posts {
+  list-style: none;
+  margin-top: 1.6em;
+}
+
+.posts li {
+  font-size: clamp(1.1rem, 2.4vw, 1.55rem);
+  font-weight: 300;
+  padding: 0.75em 0;
+  border-top: 3px solid var(--black);
+}
+
+.posts li:last-child { border-bottom: 3px solid var(--black); }
+
+.posts li::before {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  background: var(--red);
+  margin-right: 0.7em;
+  vertical-align: baseline;
+}
+
+.posts li:nth-child(2)::before { border-radius: 50%; }
+
+.posts li:nth-child(3)::before {
+  background: transparent;
+  width: 0;
+  height: 0;
+  border-left: 0.32em solid transparent;
+  border-right: 0.32em solid transparent;
+  border-bottom: 0.58em solid var(--red);
+}
+
+/* red semicircle bleeding from the left edge */
+.orn-blog-semi {
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(45px, 7vw, 110px);
+  height: clamp(90px, 14vw, 220px);
+  background: var(--red);
+  border-radius: 0 clamp(90px, 14vw, 220px) clamp(90px, 14vw, 220px) 0;
+  opacity: 0.92;
+}
+
+/* ============================================================
+   BAND 5 · WORK · RED
+   ============================================================ */
+
+.band-work {
+  background: var(--red);
+  color: var(--paper);
+}
+
+.band-work h2 { color: var(--black); }
+
+.band-work a { color: #ffffff; }
+
+.links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9em 2.2em;
+  font-size: clamp(1.15rem, 2.6vw, 1.7rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* black circle at right, paper triangle in top-left corner */
+.orn-work-circle {
+  right: -4vw;
+  bottom: -30%;
+  width: clamp(160px, 26vw, 380px);
+  height: clamp(160px, 26vw, 380px);
+  background: var(--black);
+  border-radius: 50%;
+}
+
+.orn-work-tri {
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: clamp(50px, 8vw, 120px) solid var(--paper);
+  border-right: clamp(50px, 8vw, 120px) solid transparent;
+}
+
+/* ============================================================
+   BAND 6 · CONTACT · BLACK
+   ============================================================ */
+
+.band-contact {
+  background: var(--black);
+  color: var(--paper);
+}
+
+.band-contact h2 { color: var(--yellow); }
+
+.band-contact a { color: var(--paper); text-decoration-color: var(--yellow); }
+
+.colophon {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  opacity: 0.6;
+}
+
+/* yellow semicircle rising from the bottom edge */
+.orn-foot-semi {
+  right: clamp(1rem, 8vw, 6rem);
+  bottom: -1px;
+  width: clamp(120px, 20vw, 280px);
+  height: clamp(60px, 10vw, 140px);
+  background: var(--yellow);
+  border-radius: clamp(120px, 20vw, 280px) clamp(120px, 20vw, 280px) 0 0;
+  opacity: 0.95;
+}
+
+/* ============================================================
+   RESPONSIVE · ≤ 480px
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .orn-hero-circle { right: -30vw; top: 22%; }
+  .orn-ua-ring { right: -28vw; }
+  .orn-work-circle { right: -24vw; }
+
+  .ukraine {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+
+  .links {
+    flex-direction: column;
+    gap: 0.8em;
+  }
+
+  .lang { justify-content: flex-start; }
+}

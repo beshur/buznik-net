@@ -1,0 +1,365 @@
+/* 06 — Neo-brutalist | buznik.net style prototype */
+
+:root {
+  --bg: #ffdf3f;
+  --ink: #000;
+  --paper: #fff;
+  --pink: #ff90e8;
+  --pink-hot: #ff6b9d;
+  --cyan: #4de1ff;
+  --lime: #a6fa5d;
+  --ua-blue: #0057b7;
+  --ua-yellow: #ffd700;
+  --border: 3px solid var(--ink);
+  --shadow: 6px 6px 0 var(--ink);
+  --shadow-big: 9px 9px 0 var(--ink);
+  --font: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  background: var(--paper);
+}
+
+.card--white { background: var(--paper); }
+.card--pink  { background: var(--pink); }
+.card--cyan  { background: var(--cyan); }
+.card--lime  { background: var(--lime); }
+
+/* ---------- Type ---------- */
+
+h1 {
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin: 0.15em 0 0.2em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+  display: inline-block;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 2px 12px;
+  transform: rotate(-1deg);
+}
+
+.tagline {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.tagline strong {
+  background: var(--lime);
+  border: 2px solid var(--ink);
+  padding: 0 8px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.bio {
+  font-size: 1.05rem;
+  font-weight: 500;
+  max-width: 60ch;
+}
+
+/* ---------- Language switch ---------- */
+
+.lang {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* ---------- Chips (links & buttons) ---------- */
+
+.chip {
+  display: inline-block;
+  background: var(--paper);
+  border: var(--border);
+  box-shadow: 4px 4px 0 var(--ink);
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+  padding: 8px 16px;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+a.chip:hover,
+a.chip:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+a.chip:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.chip--active {
+  background: var(--ink);
+  color: var(--bg);
+  cursor: default;
+}
+
+.chip--wide {
+  width: 100%;
+  background: var(--bg);
+}
+
+.inline-link {
+  color: var(--ink);
+  font-weight: 900;
+  text-decoration: none;
+  border-bottom: 3px solid var(--ink);
+  background: var(--pink);
+  padding: 0 4px;
+}
+
+.inline-link:hover {
+  background: var(--pink-hot);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  box-shadow: var(--shadow-big);
+}
+
+.hero__mark {
+  position: absolute;
+  top: -18px;
+  right: 22px;
+  transform: rotate(6deg);
+}
+
+.hero__mark svg {
+  display: block;
+  width: 56px;
+  height: 56px;
+  color: var(--ink);
+}
+
+/* ---------- Stickers ---------- */
+
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 10px;
+}
+
+.sticker--pink { background: var(--pink); }
+
+.sticker--mono {
+  background: var(--pink-hot);
+  color: var(--ink);
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  width: 64px;
+  height: 64px;
+  transform: rotate(-4deg);
+}
+
+/* ---------- Stand with Ukraine ---------- */
+
+.ukraine {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.ukraine:hover,
+.ukraine:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+.ukraine__flag {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 48px;
+  border: var(--border);
+  background: linear-gradient(
+    to bottom,
+    var(--ua-blue) 0 50%,
+    var(--ua-yellow) 50% 100%
+  );
+}
+
+.ukraine__text {
+  font-size: 1.4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Stack / tags ---------- */
+
+.stack__label {
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.tags:last-child {
+  margin-bottom: 0;
+}
+
+.tags li {
+  border: var(--border);
+  box-shadow: 3px 3px 0 var(--ink);
+  background: var(--paper);
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 5px 12px;
+}
+
+.tags li:nth-child(3n+1) { transform: rotate(-1.5deg); }
+.tags li:nth-child(3n+2) { transform: rotate(1deg); }
+
+.tags--alt li {
+  background: var(--bg);
+  font-weight: 700;
+}
+
+/* ---------- Blog ---------- */
+
+.blog p {
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.post-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- Work / Contact columns ---------- */
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.link-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.link-list .chip {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .page {
+    padding: 24px 14px 48px;
+    gap: 26px;
+  }
+
+  .card {
+    padding: 20px 16px;
+  }
+
+  .hero {
+    padding-top: 58px;
+  }
+
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .hero__mark {
+    top: -14px;
+    right: 14px;
+  }
+
+  .hero__mark svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .ukraine {
+    gap: 14px;
+  }
+
+  .ukraine__flag {
+    width: 56px;
+    height: 38px;
+  }
+
+  .ukraine__text {
+    font-size: 1.1rem;
+  }
+}
