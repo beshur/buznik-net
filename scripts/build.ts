@@ -77,7 +77,7 @@ async function buildImages(): Promise<[number, number, number]> {
 async function build() {
   const started = Date.now();
   rmSync(DIST, { recursive: true, force: true });
-  for (const dir of ["css", "img", "lib", "templates"]) {
+  for (const dir of ["css", "img", "lib", "templates", "data"]) {
     mkdirSync(join(DIST, dir), { recursive: true });
   }
 
@@ -88,6 +88,7 @@ async function build() {
   copied += await copyGlob("cron.sh", DIST);
   copied += await copyGlob("lib/*.php", join(DIST, "lib"));
   copied += await copyGlob("templates/*.php", join(DIST, "templates"));
+  copied += await copyGlob("data/*.json", join(DIST, "data"));
 
   let cssIn = 0,
     cssOut = 0;
@@ -108,7 +109,7 @@ async function build() {
   );
 }
 
-const WATCHED = /^(css|lib|templates)\/|^[^/]+\.php$|^cron\.sh$/;
+const WATCHED = /^(css|lib|templates|data)\/|^[^/]+\.php$|^cron\.sh$/;
 
 async function watchMode() {
   console.log("watching css/, lib/, templates/, *.php, cron.sh — ctrl-c to stop");

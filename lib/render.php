@@ -12,6 +12,14 @@ function e(?string $value): string {
 	return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
 }
 
+/** Decorative navigation icon; the adjacent link text supplies its name. */
+function arrow_icon(string $direction = 'right'): string {
+	if (!in_array($direction, ['right', 'left', 'up-right'], true)) {
+		throw new InvalidArgumentException('Unknown arrow direction');
+	}
+	return '<svg class="case-arrow case-arrow--' . $direction . '" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>';
+}
+
 /** The page registry (pages.php), loaded once. */
 function b_pages(): array {
 	static $pages = null;
@@ -56,7 +64,7 @@ function render_page(string $page_id, string $lang): string {
 	}
 	$vars = ['lang' => $lang, 'page_id' => $page_id];
 	return render_template('layout.php', $vars + [
-		'title' => t($page['title_key'], $lang),
+		'title' => $page['title'] ?? t($page['title_key'], $lang),
 		'content' => render_template($page['template'], $vars),
 	]);
 }

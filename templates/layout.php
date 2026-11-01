@@ -13,8 +13,12 @@
 <body>
   <div id="container">
     <div class="topbar">
+      <nav class="site-nav" aria-label="<?= $lang === 'ukr' ? 'Головна навігація' : 'Main navigation' ?>">
+        <a href="<?= e(ltrim(page_path('home', $lang), '/')) ?>"<?= $page_id === 'home' ? ' aria-current="page"' : '' ?>><?= e(t('name', $lang)) ?></a>
+        <a href="cases.html"<?= $page_id === 'cases' ? ' aria-current="page"' : '' ?>><?= e(t('cases', $lang)) ?></a>
+      </nav>
       <div class="topbar-lang">
-        <ul class="list"><?php foreach (B_LANGUAGES as $code): ?><?php if ($code === $lang): ?><li class="active"><?= e(B_LANG_LABELS[$code]) ?></li><?php else: ?><li><a href="<?= e(page_path($page_id, $code)) ?>"><?= e(B_LANG_LABELS[$code]) ?></a></li><?php endif; ?><?php endforeach; ?></ul>
+        <ul class="list"><?php foreach (array_keys(b_pages()[$page_id]['output']) as $code): ?><?php if ($code === $lang): ?><li class="active"><?= e(B_LANG_LABELS[$code]) ?></li><?php else: ?><li><a href="<?= e(ltrim(page_path($page_id, $code), '/')) ?>"><?= e(B_LANG_LABELS[$code]) ?></a></li><?php endif; ?><?php endforeach; ?></ul>
       </div>
     </div>
 <?= $content ?>

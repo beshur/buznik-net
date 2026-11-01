@@ -1,0 +1,60 @@
+{
+    "index": {
+        "id": 2770,
+        "title": "Case studies",
+        "company": "Stark Future",
+        "intro_html": "<p>Product decisions, technical ownership and delivery at Stark Future. Five projects spanning full-stack services, frontend architecture and ecommerce operations.</p>\n"
+    },
+    "cases": {
+        "vehicle-registration": {
+            "id": 2771,
+            "title": "Vehicle registration",
+            "body_html": "<h2>The problem</h2>\n<p>Vehicle registration is more than an item in a shopping cart. Customers need to provide identification and a signed power of attorney, and the people processing registration need controlled access to those documents. The service needed a complete workflow around the purchase.</p>\n<h2>My responsibility</h2>\n<p>I owned the work from interviews with the teams operating the service through technical scope, stack decisions, and frontend and backend implementation. I consulted backend colleagues and DevOps; DevOps helped build part of the infrastructure.</p>\n<h2>What I built</h2>\n<p>Customers can add registration to a road-legal bike order in the cart. The final checkout step explains the documents they need to provide, and a dedicated page handles document submission and signing.</p>\n<p>I implemented the backend changes for order processing and document storage and retrieval on AWS. Document retrieval is restricted to users with the role required to process registration.</p>\n<h2>The result</h2>\n<p>Customers can order registration with their bike, submit the required documents online, and receive their plates by mail. The operational team has a controlled way to retrieve the documents needed to fulfill the service.</p>\n",
+            "company": "Stark Future",
+            "role": "Product discovery · Full-stack delivery",
+            "summary": "From buying a road-legal bike to submitting signed documents and receiving registration plates by mail.",
+            "outcome": "An end-to-end registration service",
+            "scope": "Product definition, frontend, backend and document access"
+        },
+        "vehicle-service-history": {
+            "id": 2772,
+            "title": "Vehicle Service History",
+            "body_html": "<h2>The problem</h2>\n<p>Warranty replacements were agreed over email. With hundreds of replacement orders each month, there was no consistent claim record for faulty parts, serial numbers, attachments or decisions.</p>\n<h2>My responsibility</h2>\n<p>I led technical delivery of the project and implemented the frontend and admin tools. A backend developer owned backend implementation. Other teams had supplied initial requirements, but expectations about the workflow and data ownership were misaligned.</p>\n<h2>The decisions</h2>\n<p>I worked with support to clarify scope, VIN selection, parts selection and the critical service-item fields. I resolved the data-ownership question by consolidating service-item data in our backend API: a database-backed source we could control without relying on a third party for that data.</p>\n<p>I built claim forms, service history pages and admin review tools, worked on API contracts and Zendesk integration, and led support training. After launch, I continued with fixes and delivered owner claim creation alongside the move to the new ecommerce platform.</p>\n<h2>The result</h2>\n<p>The dealer portal launched on 4 December 2025. Within its first year from launch, it held 6,577 service actions, 93% of them warranty claims. In October, claims represented 211 distinct dealers, and 90% were linked to a Zendesk ticket.</p>\n<p>Dealers gained standardized forms and parts selection, while support gained structured records and review tools. The portal brought clarity and structure to warranty claims and freed up customer support time.</p>\n",
+            "company": "Stark Future",
+            "role": "Technical leadership · Support operations",
+            "summary": "A dedicated warranty portal that turns unstructured email claims into traceable submissions and review workflows.",
+            "outcome": "6,000+ structured warranty claims in the first year",
+            "scope": "Project-wide technical leadership; frontend and admin implementation"
+        },
+        "nextjs-migration": {
+            "id": 2773,
+            "title": "Frontend migration to Next.js",
+            "body_html": "<h2>The problem</h2>\n<p>The existing frontend framework no longer received updates. We needed a maintained platform with modern rendering capabilities and a stronger ecosystem for development and hiring.</p>\n<p>The migration depended on a broader backend rebuild and took roughly 18 months, concluding with the ecommerce platform relaunch.</p>\n<h2>My responsibility</h2>\n<p>I owned stack selection, initial project setup, code structure and development workflows. I chose Next.js for its adoption, backing and built-in rendering, caching and image optimization capabilities.</p>\n<h2>The difficult part</h2>\n<p>The storefront supported roughly 600 locale combinations. Enabling all of them in the prototype caused header-related failures without clear diagnostics. I investigated the issue and limited initially rendered locales to the most important combinations, keeping the others available through user selection.</p>\n<h2>The result</h2>\n<p>The new platform reduced page-load times by approximately 50% and brought Web Vitals into the green zone. We consolidated the frontend stack and improved developer experience and maintainability. The team also adopted RTK Query, improving code readability and reuse.</p>\n<h2>What I would do earlier</h2>\n<p>Introduce locale combinations incrementally and monitor header growth at each step, so scaling limits become visible before enabling the complete set.</p>\n",
+            "company": "Stark Future",
+            "role": "Stack selection · Frontend architecture",
+            "summary": "A maintained frontend foundation for an international storefront, delivered alongside a broader ecommerce rebuild.",
+            "outcome": "Approximately 50% faster page loads",
+            "scope": "Stack selection, project setup, code structure and workflows"
+        },
+        "ecommerce-v3": {
+            "id": 2774,
+            "title": "Ecommerce platform rewrite",
+            "body_html": "<h2>The problem</h2>\n<p>We were rewriting the ecommerce platform and critical admin functionality alongside a new design. The work crossed frontend and backend boundaries, with design gaps and unresolved business rules that could block implementation.</p>\n<h2>My responsibility</h2>\n<p>I led the effort from the frontend and product side: coordinating frontend delivery, planning release milestones and setting the initial launch scope. My contribution was primarily delivery and product decisions rather than coding, with additional support for orders, account updates and vehicle pages in the after-sales experience.</p>\n<h2>The decisions</h2>\n<p>I created the milestone document and separated first-release requirements from deferred work. I clarified split shipments for mixed bike-and-parts orders and the intended uses of payment methods, including dealer-only, internal and marketing purposes.</p>\n<p>Using knowledge of the existing business and platform, I proposed solutions for incomplete designs and shaped critical admin workflows. This let the team resolve implementation questions without repeatedly waiting for senior-management clarification.</p>\n<h2>The result</h2>\n<p>The new ecommerce platform went live. My work let the team plan around the agreed scope and connect customer-facing flows with fulfillment, support and admin operations.</p>\n",
+            "company": "Stark Future",
+            "role": "Frontend and product leadership",
+            "summary": "Connecting checkout, fulfillment, after-sales and admin operations during a major platform rewrite.",
+            "outcome": "A six-month-plus rewrite brought to launch",
+            "scope": "Frontend delivery, release milestones, launch scope and business-rule decisions"
+        },
+        "ex-launch": {
+            "id": 2775,
+            "title": "EX product launch",
+            "body_html": "<h2>The problem</h2>\n<p>The platform had been built for one bike, with hardcoded assumptions spread through the legacy code. Launching EX meant finding those assumptions and adapting the flows. Last-minute backend changes added unexpected integration work close to launch.</p>\n<h2>My responsibility</h2>\n<p>I investigated the existing implementation, adapted it for another bike product, and helped resolve integration issues within the launch deadline.</p>\n<h2>The trade-off</h2>\n<p>The backend API did not yet adequately support bike configuration. We used agreed product-data conventions between frontend and backend, and file-naming conventions with design. Under the deadline, I accepted additional hardcoded configuration to get the product launched.</p>\n<h2>The result</h2>\n<p>We launched EX within a tight timeframe and enabled multiple bike product flows on a platform previously built around one bike.</p>\n<h2>What came later</h2>\n<p>The later ecommerce platform rewrite consolidated bikes and parts into one catalog and exposed configurator information through the API. That later investment addressed the structural limitations behind the launch trade-off.</p>\n",
+            "company": "Stark Future",
+            "role": "Legacy investigation · Launch delivery",
+            "summary": "Enabling multiple bike products on an ecommerce platform built around a single bike.",
+            "outcome": "A new bike launched under a tight deadline",
+            "scope": "Legacy frontend changes and backend integration"
+        }
+    }
+}

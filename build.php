@@ -25,7 +25,7 @@ require __DIR__ . '/lib/render.php';
 
 if (($argv[1] ?? null) === '--print-outputs') {
 	foreach (b_pages() as $page) {
-		foreach (B_LANGUAGES as $lang) {
+		foreach (array_keys($page['output']) as $lang) {
 			echo $page['output'][$lang] . "\n";
 		}
 	}
@@ -41,7 +41,7 @@ try {
 		if ($only_page !== null && $page_id !== $only_page) {
 			continue;
 		}
-		foreach (B_LANGUAGES as $lang) {
+		foreach (array_keys($page['output']) as $lang) {
 			if ($only_lang !== null && $lang !== $only_lang) {
 				continue;
 			}

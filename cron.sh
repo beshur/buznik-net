@@ -7,6 +7,8 @@ PHP="/usr/local/php85/bin/php"
 
 echo "# Get resume texts (1):"
 "$PHP" get_resume_texts.php || exit 1
+echo "# Get case studies:"
+"$PHP" get_case_texts.php || exit 1
 echo ""
 echo "# Building pages:"
 "$PHP" build.php || exit 1

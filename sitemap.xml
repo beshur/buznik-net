@@ -2,5 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://buznik.net/index.html</loc></url>
   <url><loc>https://buznik.net/ukr.html</loc></url>
+  <url><loc>https://buznik.net/cases.html</loc></url>
+  <url><loc>https://buznik.net/case-vehicle-registration.html</loc></url>
+  <url><loc>https://buznik.net/case-vehicle-service-history.html</loc></url>
+  <url><loc>https://buznik.net/case-nextjs-migration.html</loc></url>
+  <url><loc>https://buznik.net/case-ecommerce-v3.html</loc></url>
+  <url><loc>https://buznik.net/case-ex-launch.html</loc></url>
   <url><loc>https://buznik.net/j/sitemap.xml</loc></url>
 </urlset>

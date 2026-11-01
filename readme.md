@@ -14,6 +14,12 @@ Static HTML is generated from PHP templates:
   and the language menu pick it up automatically.
 - `templates/layout.php` — shared skeleton (head, inlined `css/main.css`,
   language switcher). `templates/home.php` — home page content.
+- `cases.html` — case study index, with five individual `case-*.html` pages.
+  Public case copy is edited in WordPress and cached in `data/cases.json`;
+  `lib/cases.php` reads the cache, and `templates/cases.php` and
+  `templates/case.php` render the index and details. Source interviews and
+  evidence stay in the sibling `cv-source/cases/` folder. Case pages are
+  English only; the language menu shows only available translations.
 - `lib/strings.php` — UI strings per language + `t($key, $lang)`.
   Languages are listed in `B_LANGUAGES` (`config.php`).
 - `lib/render.php` — tiny renderer: `render_page($id, $lang)` wraps a
@@ -24,8 +30,10 @@ Static HTML is generated from PHP templates:
   `php build.php` / `php build.php home ukr` / `php build.php --print-outputs`.
 - `get_resume_texts.php` — caches the bio text from the WordPress REST
   API into `text_<lang>.html` (used by `templates/home.php`).
+- `get_case_texts.php` — fetches the private case index and child pages
+  from WordPress. Validates all cases before atomically updating the cache.
 - `index_page.php` — optional dynamic preview entry (`?lang=ukr`).
-- `cron.sh` — server entry: fetch texts → `build.php` → copy the
+- `cron.sh` — server entry: fetch homepage and case content → `build.php` → copy the
   generated files one level up (www root).
 
 Deploy flow: push to master → GitHub Action builds `dist/` and publishes
@@ -41,6 +49,43 @@ dependency is `sharp` for image compression.
 - `bun run build` to build `dist/` (copy php/assets, minify css, compress images)
 - `bun run start` to watch sources, rebuild `dist/` and re-render the html on change
 - `php build.php` to just regenerate the html files
+
+Open `cases.html` after generating pages to browse the case studies locally.
+Refresh cases with `php get_case_texts.php`, then run `php build.php`.
+The committed cache supports offline builds. Keep `sitemap.xml` in sync when
+adding public pages.
+
+## Editing case studies in WordPress
+
+The **Buznik Case Studies** plugin lives in the sibling repository at
+`buznik-net-remote/j/wp-content/plugins/buznik-case-studies`. Activate it with
+Advanced Custom Fields to get a dedicated **Case Studies** admin menu.
+
+Each case has a title and story editor plus ACF fields for **Company**, **Role**,
+**Summary**, **Outcome**, and **My scope**. Story headings and formatting can be
+edited freely. Order in Attributes controls the index and navigation. Its slug
+becomes `case-<slug>.html`; keep existing slugs to preserve URLs. Drafts are
+excluded. Existing source records are private.
+The case index groups entries by their Company field. The WordPress Case Studies
+list also has a company column and filter.
+
+The private **Case studies** page (ID `2770`) remains under Pages and holds the
+index title and introduction, with an ACF **Company heading** field.
+
+Activation migrates the five legacy child Pages to the custom type, preserving
+IDs, slugs, privacy and order, and backing up their original content in post meta.
+The fetcher uses `/wp/v2/case-studies` and the structured `acf` response. It falls
+back to legacy child Pages only when the plugin route is not registered. A failed
+or incomplete fetch leaves the previous cache intact.
+
+The plugin owns case rebuilds independently of Davis. It queues a rebuild at
+shutdown after ACF and REST saves, using the existing `dist/cron.sh`. Deploy the
+updated static generator to enable public HTML refresh. The plugin reports
+missing generator code and rebuild failures in the admin. The homepage's existing
+theme hook remains unchanged; no case-specific theme changes are required.
+
+Run `php scripts/check-case-import.php` and `php scripts/check-case-plugin.php`
+for importer and plugin migration contract checks.
 
 Deploys happen exclusively via push to master: the GitHub Action builds
 `dist/`, publishes `dist.zip` as a release and pings the server webhook.

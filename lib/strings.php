@@ -14,6 +14,14 @@ const B_LANG_LABELS = [
 ];
 
 const B_STRINGS = [
+	'cases_title' => [
+		'eng' => 'Case studies — Alex Buznik',
+		'ukr' => 'Проєкти — Олександр Бузник',
+	],
+	'cases' => [
+		'eng' => 'Case studies',
+		'ukr' => 'Проєкти (англійською)',
+	],
 	'name' => [
 		'eng' => 'Alex Buznik',
 		'ukr' => 'Олександр Бузник',
